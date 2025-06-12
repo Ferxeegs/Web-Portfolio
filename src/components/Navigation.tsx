@@ -17,24 +17,26 @@ const Navigation: React.FC<NavigationProps> = ({
     scrollToSection
 }) => {
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-            isScrolled
-                ? 'bg-black/80 backdrop-blur-2xl shadow-2xl border-b border-gray-800/50'
-                : 'bg-transparent'
-        }`}>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-500 
+            ${isScrolled 
+                ? 'bg-black/80 backdrop-blur-2xl shadow-2xl border-b border-gray-800/50' 
+                : 'bg-transparent border-b border-transparent'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-4 sm:py-6">
-                    <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent animate-glow">
-                        Ferxeegs
+                    <div className="relative text-xl sm:text-2xl font-bold">
+                        <span className="relative z-10 bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent inline-block animate-gradient">
+                            Ferxeegs
+                        </span>
+                        <div className="absolute inset-0 blur-xl bg-gradient-to-r from-violet-400/20 via-purple-400/20 to-fuchsia-400/20 animate-glow" />
                     </div>
-
+                    
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-6 lg:space-x-8">
                         {navigationItems.map((item, index) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className="relative text-gray-300 hover:text-violet-400 transition-all duration-300 capitalize group text-base lg:text-lg font-medium"
+                                className="relative text-gray-300 hover:text-violet-400 transition-all duration-300 capitalize group text-sm lg:text-base font-bold"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 {item.label}

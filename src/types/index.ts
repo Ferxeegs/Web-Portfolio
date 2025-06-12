@@ -7,10 +7,9 @@ export interface Project {
 }
 
 export interface Certificate {
-    title: string;
-    description: string;
-    technologies: string[];
-    issuer: string;
+    title: string;       // For alt text and accessibility
+    imageUrl: string;    // Required now, not optional
+    credentialLink: string;
 }
 
 export interface TechStack {

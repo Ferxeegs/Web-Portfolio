@@ -7,43 +7,40 @@ export const projects: Project[] = [
         title: "Dokter Ikan",
         description:
             "AI-powered web application that helps fish farmers detect fish species and diseases using image recognition and symptom-based expert system. Includes consultation features and offline support using ONNX models.",
-        technologies: ["Next.js", "Express JS", "Flask", "ONNX", "IndexedDB"],
-        link: "#" // Ganti dengan link ke demo atau repo jika tersedia
+        technologies: ["Next.js", "Express Js", "Flask", "MySQL", "PWA"],
+        link: "https://github.com/Ferxeegs/Dokter-Ikan" 
     },
     {
         title: "Arshakatour",
         description:
-            "Tour and travel website for booking religious trips in Indonesia, complete with destination packages, payment options, and admin management system.",
+            "ArshakaTour is a tour and travel website for booking trips across Indonesia, offering diverse destination packages, flexible payment options, and a complete admin management system for efficient operations.",
         technologies: ["Laravel", "MySQL", "Bootstrap", "JavaScript"],
-        link: "#" // Ganti dengan link ke demo atau repo jika tersedia
+        link: "https://github.com/Ferxeegs/Arshakatour" 
     },
     {
         title: "NutriSense",
         description:
             "Mobile dietary app that scans food using the camera, detects the type of food, and displays nutritional content. It also evaluates whether the food is healthy, helping users make smarter dietary decisions.",
         technologies: ["Kotlin", "TensorFlow Lite", "SQLite", "CameraX"],
-        link: "#" // Ganti dengan link ke demo atau repo jika tersedia
+        link: "https://github.com/Ferxeegs/NutriSense" 
     }
 ];
 
 export const certificates: Certificate[] = [
     {
         title: "AWS Certified Developer",
-        description: "AWS developer certificate that validates skills in building and deploying applications in the cloud.",
-        technologies: ["AWS", "Cloud Computing", "Lambda", "S3"],
-        issuer: "Amazon Web Services"
+        imageUrl: "/certificates/Dicoding-1.png", // Update path dimulai dengan '/'
+        credentialLink: "https://www.credly.com/your-aws-credential"
     },
     {
         title: "Google Analytics Certified",
-        description: "Google Analytics certificate for website analytics and digital performance optimization.",
-        technologies: ["Analytics", "SEO", "Data Analysis", "Reporting"],
-        issuer: "Google"
+        imageUrl: "/certificates/Dicoding-2.png", // Update path dimulai dengan '/'
+        credentialLink: "https://analytics.google.com/your-credential"
     },
     {
         title: "Meta Front-End Developer",
-        description: "Professional certificate program from Meta for modern front-end development.",
-        technologies: ["React", "JavaScript", "CSS", "Git"],
-        issuer: "Meta"
+        imageUrl: "/certificates/Dicoding-3.png", // Update path dimulai dengan '/'
+        credentialLink: "https://www.coursera.org/your-credential"
     }
 ];
 

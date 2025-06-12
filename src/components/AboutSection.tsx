@@ -9,21 +9,21 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ visibleElements }) => {
     return (
         <section id="about" className="py-16 sm:py-24 lg:py-32 px-4 relative">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <div className={`grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center animate-on-scroll transition-all duration-1000 ${
                     visibleElements.has('about-content') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
                 }`} id="about-content">
                     <div className="space-y-6 sm:space-y-8 order-2 md:order-1">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent leading-tight">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent leading-tight">
                             About Me
                         </h2>
                         <div className="space-y-4 sm:space-y-6">
-                            <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
+                            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                                 I am a passionate full stack developer with expertise in creating innovative digital solutions.
-                                With over 3 years of experience in web development, I specialize in building modern,
+                                With over 2 years of experience in web development, I specialize in building modern,
                                 user-friendly applications using cutting-edge technologies.
                             </p>
-                            <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
+                            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                                 I constantly strive to learn the latest technologies and implement them in my projects.
                                 My main focus is delivering the best value to clients through clean code, efficient solutions,
                                 and exceptional user experiences.
