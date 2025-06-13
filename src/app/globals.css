@@ -25,9 +25,448 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* === Splash Screen Styles === */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a0a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
 
-/* === Global Animations & Utilities === */
+.splash-fadeout {
+  opacity: 0;
+}
 
+.splash-content {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.splash-logo {
+  margin-bottom: 2rem;
+  animation: splashLogoAppear 1s ease-out forwards;
+}
+
+.splash-circle {
+  width: 120px;
+  height: 120px;
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #8b5cf6, #a855f7, #c084fc) 1;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashRotate 2s linear infinite;
+}
+
+.splash-inner-circle {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  border-radius: 50%;
+  animation: splashPulse 1.5s ease-in-out infinite;
+}
+
+.splash-text {
+  margin-bottom: 2rem;
+}
+
+.splash-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.splash-welcome {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  opacity: 0;
+  animation: splashTextSlide 0.8s ease-out 0.5s forwards;
+}
+
+.splash-portfolio {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #8b5cf6, #a855f7, #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: splashTextSlide 0.8s ease-out 1s forwards;
+}
+
+.splash-subtitle {
+  color: #9ca3af;
+  font-size: 1rem;
+  opacity: 0;
+  animation: splashTextSlide 0.8s ease-out 1.5s forwards;
+}
+
+.splash-loader {
+  width: 200px;
+  height: 4px;
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 0;
+  animation: splashTextSlide 0.8s ease-out 2s forwards;
+}
+
+.splash-loader-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #a855f7);
+  border-radius: 2px;
+  animation: splashLoading 2s ease-in-out forwards;
+}
+
+.splash-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.splash-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.splash-particle-1 {
+  top: 20%;
+  left: 10%;
+  animation: splashFloat 3s ease-in-out infinite;
+}
+
+.splash-particle-2 {
+  top: 60%;
+  left: 20%;
+  animation: splashFloat 3s ease-in-out infinite 0.5s;
+}
+
+.splash-particle-3 {
+  top: 30%;
+  right: 15%;
+  animation: splashFloat 3s ease-in-out infinite 1s;
+}
+
+.splash-particle-4 {
+  bottom: 20%;
+  left: 30%;
+  animation: splashFloat 3s ease-in-out infinite 1.5s;
+}
+
+.splash-particle-5 {
+  top: 70%;
+  right: 25%;
+  animation: splashFloat 3s ease-in-out infinite 2s;
+}
+
+.splash-particle-6 {
+  bottom: 40%;
+  right: 10%;
+  animation: splashFloat 3s ease-in-out infinite 2.5s;
+}
+
+/* === Home Section Styles === */
+.home-avatar-container {
+  margin-bottom: 2rem;
+}
+
+.home-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  padding: 4px;
+  animation: homeGlow 2s ease-in-out infinite;
+}
+
+.home-avatar-inner {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-avatar-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #8b5cf6, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.home-title-line {
+  opacity: 1;
+}
+
+.home-name {
+  background: linear-gradient(45deg, #8b5cf6, #a855f7, #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.home-subtitle {
+  color: white;
+  font-weight: 600;
+}
+
+.home-university {
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.home-description {
+  margin-bottom: 2rem;
+}
+
+.home-social {
+  margin-bottom: 2rem;
+}
+
+.home-social-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.home-social-link {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b5cf6;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  background: rgba(139, 92, 246, 0.1);
+  text-decoration: none;
+}
+
+.home-social-link:hover {
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .home-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+.home-btn-primary {
+  width: 100%;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  border-radius: 1rem;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .home-btn-primary {
+    width: auto;
+    border-radius: 1.5rem;
+  }
+}
+
+.home-btn-primary:hover {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+}
+
+.home-btn-secondary {
+  width: 100%;
+  padding: 0.75rem 2rem;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  border-radius: 1rem;
+  color: #8b5cf6;
+  font-weight: 600;
+  background: rgba(139, 92, 246, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .home-btn-secondary {
+    width: auto;
+    border-radius: 1.5rem;
+  }
+}
+
+.home-btn-secondary:hover {
+  background: rgba(139, 92, 246, 0.2);
+  color: #a855f7;
+  border-color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+/* === General Section Styles === */
+section {
+  min-height: 100vh;
+  width: 100%;
+  scroll-margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === Animation Classes === */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-letter {
+  opacity: 0;
+  display: inline-block;
+  animation: letterFadeIn 0.5s ease-out forwards;
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 8s ease infinite;
+}
+
+/* === Splash Screen Animations === */
+@keyframes splashLogoAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes splashPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes splashTextSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashLoading {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes splashFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* === Home Section Animations === */
+@keyframes homeGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+  }
+}
+
+/* === General Animations === */
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -51,20 +490,32 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
 }
 
 @media (min-width: 768px) {
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { 
+      transform: translateY(0px); 
+    }
+    50% { 
+      transform: translateY(-20px); 
+    }
   }
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); 
+  }
 }
 
 @keyframes letterFadeIn {
@@ -100,27 +551,53 @@ body {
   }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-.animate-letter {
-  opacity: 0;
-  display: inline-block;
-  animation: letterFadeIn 0.5s ease-out forwards;
-}
-
 @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  0% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+  100% { 
+    background-position: 0% 50%; 
+  }
 }
 
-.animate-gradient {
-    background-size: 200% auto;
-    animation: gradient 8s ease infinite;
+/* === Portfolio Item Animations === */
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes techPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  70% {
+    transform: scale(0.95) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.animate-float-up {
+  animation: floatUp 0.8s ease-out forwards;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tech-pop {
+  animation: techPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
 }

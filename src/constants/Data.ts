@@ -8,58 +8,62 @@ export const projects: Project[] = [
         description:
             "AI-powered web application that helps fish farmers detect fish species and diseases using image recognition and symptom-based expert system. Includes consultation features and offline support using ONNX models.",
         technologies: ["Next.js", "Express Js", "Flask", "MySQL", "PWA"],
-        link: "https://github.com/Ferxeegs/Dokter-Ikan" 
+        link: "https://github.com/Ferxeegs/Dokter-Ikan",
+        imageUrl:"/projects/Dokterikan.png"
     },
     {
         title: "Arshakatour",
         description:
             "ArshakaTour is a tour and travel website for booking trips across Indonesia, offering diverse destination packages, flexible payment options, and a complete admin management system for efficient operations.",
         technologies: ["Laravel", "MySQL", "Bootstrap", "JavaScript"],
-        link: "https://github.com/Ferxeegs/Arshakatour" 
+        link: "https://github.com/Ferxeegs/Arshakatour",
+        imageUrl:"/projects/Arshakatour.png"
     },
     {
         title: "NutriSense",
         description:
             "Mobile dietary app that scans food using the camera, detects the type of food, and displays nutritional content. It also evaluates whether the food is healthy, helping users make smarter dietary decisions.",
         technologies: ["Kotlin", "TensorFlow Lite", "SQLite", "CameraX"],
-        link: "https://github.com/Ferxeegs/NutriSense" 
+        link: "https://github.com/Ferxeegs/NutriSense",
+        imageUrl:"/projects/NutriSense.png"
     }
 ];
 
 export const certificates: Certificate[] = [
-    {
-        title: "AWS Certified Developer",
-        imageUrl: "/certificates/Dicoding-1.png", // Update path dimulai dengan '/'
-        credentialLink: "https://www.credly.com/your-aws-credential"
-    },
-    {
-        title: "Google Analytics Certified",
-        imageUrl: "/certificates/Dicoding-2.png", // Update path dimulai dengan '/'
-        credentialLink: "https://analytics.google.com/your-credential"
-    },
-    {
-        title: "Meta Front-End Developer",
-        imageUrl: "/certificates/Dicoding-3.png", // Update path dimulai dengan '/'
-        credentialLink: "https://www.coursera.org/your-credential"
-    }
+  {
+    title: "Belajar Membuat Aplikasi Android",
+    imageUrl: "/certificates/Dicoding-1.png",
+    credentialLink: "https://www.dicoding.com/certificates/4EXG7NNKGPRL",
+    issuer: "Dicoding"
+  },
+  {
+    title: "Memulai Pemrograman dengan Kotlin",
+    imageUrl: "/certificates/Dicoding-2.png",
+    credentialLink: "https://www.dicoding.com/certificates/81P242Q7OZOY",
+    issuer: "Dicoding"
+  },
+  {
+    title: "Certified Course",
+    imageUrl: "/certificates/Dicoding-2.png",
+    credentialLink: "https://www.coursera.org/your-credential",
+    issuer: "Coursera"
+  }
 ];
 
+
 export const techStack: TechStack[] = [
-    {
-        category: "Frontend",
-        description: "Technologies I use to build attractive and responsive user interfaces.",
-        technologies: ["React", "Vue.js", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
-    },
-    {
-        category: "Backend",
-        description: "Server-side technologies for building robust and scalable APIs.",
-        technologies: ["Node.js", "Express", "Python", "Django", "PostgreSQL", "MongoDB"]
-    },
-    {
-        category: "Tools & DevOps",
-        description: "Development tools and platforms for efficient workflow.",
-        technologies: ["Git", "Docker", "AWS", "Vercel", "Figma", "VS Code"]
-    }
+    { name: "React", imageUrl: "/tech/react.png" },
+    { name: "Next.js", imageUrl: "/tech/nextjs.png" },
+    { name: "TypeScript", imageUrl: "/tech/typescript.png" },
+    { name: "Tailwind CSS", imageUrl: "/tech/tailwind.png" },
+    { name: "Node.js", imageUrl: "/tech/nodejs.png" },
+    { name: "Express", imageUrl: "/tech/express.png" },
+    { name: "Python", imageUrl: "/tech/python.png" },
+    { name: "Git", imageUrl: "/tech/git.png" },
+    { name: "Docker", imageUrl: "/tech/docker.png" },
+    { name: "MySQL", imageUrl: "/tech/mysql.png" },
+    { name: "PHP", imageUrl: "/tech/php.png" },
+    { name: "JavaScript", imageUrl: "/tech/javascript.png" },
 ];
 
 export const socialLinks: SocialLink[] = [

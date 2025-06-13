@@ -4,18 +4,19 @@ export interface Project {
     description: string;
     technologies: string[];
     link: string;
+    imageUrl?: string;
 }
 
 export interface Certificate {
     title: string;       // For alt text and accessibility
     imageUrl: string;    // Required now, not optional
     credentialLink: string;
+    issuer: string;      // Added to provide more context
 }
 
 export interface TechStack {
-    category: string;
-    description: string;
-    technologies: string[];
+    name: string;
+    imageUrl: string; // Changed from icon to imageUrl
 }
 
 export interface SocialLink {

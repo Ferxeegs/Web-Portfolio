@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 interface ContactSectionProps {
@@ -6,7 +6,30 @@ interface ContactSectionProps {
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
-    const handleSubmit = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '50px 0px' }
+        );
+
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            observer.observe(contactSection);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
         alert('Thank you! Your message has been sent.');
     };
 
@@ -24,9 +47,9 @@ const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
     return (
         <section id="contact" className="py-16 sm:py-24 lg:py-32 px-4 relative">
             <div className="max-w-5xl mx-auto">
-                <div className={`animate-on-scroll transition-all duration-1000 ${
-                    visibleElements.has('contact-content') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-                }`} id="contact-content">
+                <div className={`transition-all duration-1000 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                }`}>
                     <div className="text-center mb-12 sm:mb-16">
                         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
                             Contact Me
@@ -52,7 +75,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
                         </div>
 
                         {/* Contact Form */}
-                        <div className="space-y-4 sm:space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                             {formFields.map(({ label, type, placeholder }, index) => (
                                 <div key={index}>
                                     <label className="block text-gray-200 mb-2 sm:mb-3 font-medium text-sm sm:text-base">
@@ -60,6 +83,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
                                     </label>
                                     <input
                                         type={type}
+                                        required
                                         className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black/40 border border-gray-700/50 rounded-xl sm:rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500/50 focus:bg-black/60 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
                                         placeholder={placeholder}
                                     />
@@ -72,18 +96,19 @@ const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
                                 </label>
                                 <textarea
                                     rows={5}
+                                    required
                                     className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black/40 border border-gray-700/50 rounded-xl sm:rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500/50 focus:bg-black/60 transition-all duration-300 backdrop-blur-sm resize-none text-sm sm:text-base"
                                     placeholder="Write your message here..."
                                 />
                             </div>
                             
                             <button
-                                onClick={handleSubmit}
+                                type="submit"
                                 className="w-full px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl sm:rounded-2xl text-white font-semibold hover:from-violet-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-violet-500/50 border border-violet-500/20 text-sm sm:text-base"
                             >
                                 Send Message
                             </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

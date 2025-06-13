@@ -1,7 +1,7 @@
 // components/Navigation.tsx
 import React from 'react';
 import { Menu, X } from 'lucide-react';
-import { navigationItems } from './Data';
+import { navigationItems } from '../constants/Data';
 
 interface NavigationProps {
     isScrolled: boolean;
