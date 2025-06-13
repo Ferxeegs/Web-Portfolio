@@ -11,10 +11,6 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
         return 'issuer' in item;
     };
 
-    const isTechStack = (item: Project | Certificate | TechStack): item is TechStack => {
-        return 'category' in item;
-    };
-
 
     const handleProjectClick = (link: string) => {
         if (isProject(item)) {

@@ -5,7 +5,7 @@ interface ContactSectionProps {
     visibleElements: Set<string>;
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
+const ContactSection: React.FC<ContactSectionProps> = ({ }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -51,11 +51,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ visibleElements }) => {
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
                 }`}>
                     <div className="text-center mb-12 sm:mb-16">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
                             Contact Me
                         </h2>
-                        <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto px-4">
-                            Let's collaborate to bring your dream project to life with cutting-edge technology
+                        <p className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto px-4">
+                            Let&apos;s collaborate to bring your dream project to life with cutting-edge technology
                         </p>
                     </div>
 

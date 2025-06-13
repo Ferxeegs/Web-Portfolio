@@ -76,7 +76,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                                     <Instagram className="w-4 h-4 text-white" />
                                 </a>
                                 <a
-                                    href="https://wa.me/6281234567890" // Replace with your actual WhatsApp number
+                                    href="https://wa.me/6282133513522" // Replace with your actual WhatsApp number
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-8 h-8 sm:w-9 sm:h-9 bg-green-600 hover:bg-green-500 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"

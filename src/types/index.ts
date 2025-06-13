@@ -1,4 +1,6 @@
 // types/index.ts
+import { LucideIcon } from 'lucide-react';
+
 export interface Project {
     title: string;
     description: string;
@@ -16,11 +18,11 @@ export interface Certificate {
 
 export interface TechStack {
     name: string;
-    imageUrl: string; // Changed from icon to imageUrl
+    imageUrl: string;
 }
 
 export interface SocialLink {
-    Icon: any; // Lucide React Icon component
+    Icon: LucideIcon;    // Changed from 'any' to proper Lucide icon type
     href: string;
     label: string;
 }

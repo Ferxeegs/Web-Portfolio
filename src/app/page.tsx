@@ -22,7 +22,6 @@ const Portfolio: React.FC = () => {
         isMobileMenuOpen,
         setIsMobileMenuOpen,
         scrollToSection,
-        isInitialized
     } = usePortfolio();
 
     const handleSplashFinish = () => {

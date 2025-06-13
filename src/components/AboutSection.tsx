@@ -13,7 +13,7 @@ const stats = [
     { icon: MapPin, label: "Location", value: "Semarang, ID" }
 ];
 
-const AboutSection: React.FC<AboutSectionProps> = ({ visibleElements }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ visibleElements }) => {
     const handleDownloadCV = () => {
         // Replace with actual CV file path
         const link = document.createElement('a');
-        link.href = '/cv-fadlil-ferdiansyah.pdf';
+        link.href = '/cv-fadlil.pdf';
         link.download = 'CV-Fadlil-Ferdiansyah.pdf';
         link.click();
     };
@@ -71,7 +71,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ visibleElements }) => {
                             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
                         }`}>
                             <p className="text-sm text-violet-400 font-medium mb-2">
-                                Hello, I'm
+                                Hello, I&apos;m
                             </p>
                             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
                                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -155,10 +155,12 @@ const AboutSection: React.FC<AboutSectionProps> = ({ visibleElements }) => {
                                                 </div>
                                                 
                                                 {/* Main Content */}
-                                                <div className="relative z-10 text-center">
-                                                    <div className="text-5xl sm:text-6xl mb-2">👨‍💻</div>
-                                                    <div className="text-xs text-gray-400 font-medium">Full Stack Developer</div>
-                                                    <div className="w-12 h-0.5 bg-gradient-to-r from-violet-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
+                                                <div className="relative text-center">
+                                                    <img 
+                                                    src="/B3re.jpg" 
+                                                    alt="Fadlil Ferdiansyah" 
+                                                    className="w-full h-full object-cover rounded-xl"
+                                                    />
                                                 </div>
                                                 
                                                 {/* 

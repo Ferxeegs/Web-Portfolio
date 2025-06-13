@@ -7,7 +7,7 @@ interface PortfolioSectionProps {
     visibleElements: Set<string>;
 }
 
-const PortfolioSection: React.FC<PortfolioSectionProps> = ({ visibleElements }) => {
+const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
     const [activeSection, setActiveSection] = useState<PortfolioItemType>('projects');
     const [isVisible, setIsVisible] = useState(false);
 
