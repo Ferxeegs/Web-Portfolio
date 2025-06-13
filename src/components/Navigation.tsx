@@ -63,7 +63,7 @@ const Navigation: React.FC<NavigationProps> = ({
                                 <button
                                     key={item.id}
                                     onClick={() => scrollToSection(item.id)}
-                                    className="block w-full text-left text-gray-300 hover:text-violet-400 transition-all duration-300 capitalize text-lg font-medium py-2"
+                                    className="block w-full text-left text-gray-300 hover:text-violet-400 transition-all duration-300 capitalize text-base font-bold py-1"
                                 >
                                     {item.label}
                                 </button>
