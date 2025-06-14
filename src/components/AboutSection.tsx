@@ -39,7 +39,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
     const handleDownloadCV = () => {
         // Replace with actual CV file path
         const link = document.createElement('a');
-        link.href = '/cv-fadlil.pdf';
+        link.href = '/CV-Fadlil_Ferdiansyah.pdf';
         link.download = 'CV-Fadlil-Ferdiansyah.pdf';
         link.click();
     };
@@ -162,15 +162,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
                                                     className="w-full h-full object-cover rounded-xl"
                                                     />
                                                 </div>
-                                                
-                                                {/* 
-                                                To use actual photo, replace the above content with:
-                                                <img 
-                                                    src="/path-to-your-photo.jpg" 
-                                                    alt="Fadlil Ferdiansyah" 
-                                                    className="w-full h-full object-cover rounded-xl"
-                                                />
-                                                */}
                                             </div>
                                         </div>
                                     </div>
