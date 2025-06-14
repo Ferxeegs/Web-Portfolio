@@ -87,7 +87,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
                         }`}>
                             <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                                 I am a passionate <span className="text-violet-400 font-semibold">Full Stack Developer</span> and 
-                                <span className="text-purple-400 font-semibold"> Computer Engineering</span> student at Universitas Diponegoro. 
+                                <span className="text-purple-400 font-semibold"> Computer Engineering</span> student at Diponegoro University. 
                                 With over 2 years of experience in web development, I specialize in building modern, 
                                 user-friendly applications.
                             </p>

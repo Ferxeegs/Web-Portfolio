@@ -45,7 +45,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                                     Computer Engineering Student
                                 </p>
                                 <p className="text-xs xs:text-sm sm:text-base text-gray-400">
-                                    Universitas Diponegoro
+                                    Diponegoro University
                                 </p>
                             </div>
                         </div>
