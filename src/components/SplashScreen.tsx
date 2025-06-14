@@ -1,4 +1,3 @@
-// components/SplashScreen.tsx
 import React, { useEffect, useState } from 'react';
 
 interface SplashScreenProps {
@@ -7,14 +6,30 @@ interface SplashScreenProps {
 
 const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
     const [isVisible, setIsVisible] = useState(true);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+        // Animate progress bar
+        const progressInterval = setInterval(() => {
+            setProgress(prev => {
+                if (prev >= 100) {
+                    clearInterval(progressInterval);
+                    return 100;
+                }
+                return prev + 2; // Increase by 2% every interval
+            });
+        }, 60); // Update every 60ms for smooth animation
+
+        // Hide splash screen after progress completes
         const timer = setTimeout(() => {
             setIsVisible(false);
             setTimeout(onFinish, 500); // Wait for fade out animation
-        }, 3000); // Show splash for 3 seconds
+        }, 3200); // Show splash for 3.2 seconds (slightly longer to see 100%)
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer);
+            clearInterval(progressInterval);
+        };
     }, [onFinish]);
 
     return (
@@ -35,7 +50,15 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
                 </div>
                 
                 <div className="splash-loader">
-                    <div className="splash-loader-bar"></div>
+                    <div 
+                        className="splash-loader-bar" 
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                </div>
+                
+                {/* Progress percentage display */}
+                <div className="splash-progress-text">
+                    {progress}%
                 </div>
             </div>
             

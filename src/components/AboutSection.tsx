@@ -53,11 +53,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
     };
 
     return (
-        <section id="about" className="py-12 sm:py-16 px-4 relative overflow-hidden">
+        <section id="about" className="py-8 sm:py-12 lg:py-20 px-4 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 -z-10">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-violet-500/3 rounded-full blur-3xl -translate-x-32 -translate-y-32"></div>
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-500/3 rounded-full blur-3xl translate-x-32 translate-y-32"></div>
+                <div className="absolute top-0 left-0 w-32 sm:w-64 h-32 sm:h-64 bg-violet-500/3 rounded-full blur-3xl -translate-x-16 sm:-translate-x-32 -translate-y-16 sm:-translate-y-32"></div>
+                <div className="absolute bottom-0 right-0 w-32 sm:w-64 h-32 sm:h-64 bg-purple-500/3 rounded-full blur-3xl translate-x-16 sm:translate-x-32 translate-y-16 sm:translate-y-32"></div>
             </div>
 
             <div className="max-w-6xl mx-auto">
@@ -133,79 +133,54 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
                         </div>
                     </div>
 
-                    {/* Right Side - Photo */}
+                    {/* Right Side - Elegant Photo */}
                     <div className={`flex items-center justify-center order-1 lg:order-2 transition-all duration-1000 delay-300 ${
                         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
                     }`}>
-                        <div className="relative">
-                            {/* Main Photo Container */}
+                        <div className="relative w-full max-w-sm mx-auto">
                             <div className="relative group">
-                                {/* Photo Container */}
-                                <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
-                                    {/* Gradient Border */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500 rounded-2xl p-0.5 group-hover:scale-105 transition-all duration-500 shadow-2xl">
-                                        <div className="w-full h-full bg-gray-900 rounded-2xl p-1">
-                                            <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center overflow-hidden relative">
-                                                {/* Background Pattern */}
-                                                <div className="absolute inset-0 opacity-10">
-                                                    <div className="absolute top-4 left-4 w-8 h-8 border border-violet-400 rounded rotate-45"></div>
-                                                    <div className="absolute top-8 right-6 w-4 h-4 bg-purple-400 rounded-full"></div>
-                                                    <div className="absolute bottom-6 left-6 w-6 h-6 border border-pink-400 rounded-full"></div>
-                                                    <div className="absolute bottom-8 right-4 w-3 h-3 bg-violet-400 rotate-45"></div>
-                                                </div>
-                                                
-                                                {/* Main Content */}
-                                                <div className="relative text-center">
-                                                    <img 
+                                {/* Subtle Background Glow */}
+                                <div className="absolute inset-0 -m-6 bg-gradient-to-br from-violet-500/5 via-purple-500/8 to-transparent rounded-full blur-3xl group-hover:from-violet-500/8 group-hover:via-purple-500/12 transition-all duration-700"></div>
+                                
+                                {/* Main Photo Container */}
+                                <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto">
+                                    {/* Elegant Transparent Frame */}
+                                    <div className="absolute inset-0">
+                                        {/* Outer subtle glow ring */}
+                                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-transparent p-[2px] group-hover:scale-[1.02] transition-all duration-500">
+                                            <div className="w-full h-full rounded-full bg-gray-900/95 backdrop-blur-sm"></div>
+                                        </div>
+                                        
+                                        {/* Inner frame with glass effect */}
+                                        <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gray-800/30 via-gray-700/20 to-gray-900/40 backdrop-blur-lg border border-gray-600/20 group-hover:border-violet-500/30 transition-all duration-500">
+                                            <div className="absolute inset-[1px] rounded-full overflow-hidden">
+                                                {/* Photo */}
+                                                <img 
                                                     src="/B3re.jpg" 
                                                     alt="Fadlil Ferdiansyah" 
-                                                    className="w-full h-full object-cover rounded-xl"
-                                                    />
-                                                </div>
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                />
+                                                
+                                                {/* Subtle overlay */}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-gray-900/10"></div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Floating Decorative Elements */}
-                                    <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-float">
-                                        F
-                                    </div>
-                                    <div className="absolute -bottom-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-float-delay">
-                                        💻
-                                    </div>
-                                    <div className="absolute top-1/4 -left-4 w-4 h-4 sm:w-6 sm:h-6 bg-gradient-to-br from-blue-500 to-violet-600 rounded-full flex items-center justify-center text-white text-xs shadow-lg animate-float-slow">
-                                        🚀
-                                    </div>
+                                    {/* Minimal decorative accents */}
+                                    <div className="absolute top-6 right-6 w-3 h-3 bg-violet-400/60 rounded-full animate-pulse"></div>
+                                    <div className="absolute bottom-8 left-8 w-2 h-2 bg-purple-400/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                                    <div className="absolute top-1/3 left-4 w-1 h-8 bg-gradient-to-b from-violet-400/30 to-transparent rounded-full"></div>
+                                    <div className="absolute bottom-1/3 right-4 w-1 h-6 bg-gradient-to-t from-purple-400/30 to-transparent rounded-full"></div>
                                 </div>
+
+                                {/* Bottom elegant accent */}
+                                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-8px); }
-                }
-                @keyframes float-delay {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-6px); }
-                }
-                @keyframes float-slow {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-4px); }
-                }
-                .animate-float {
-                    animation: float 3s ease-in-out infinite;
-                }
-                .animate-float-delay {
-                    animation: float-delay 3s ease-in-out infinite 1s;
-                }
-                .animate-float-slow {
-                    animation: float-slow 4s ease-in-out infinite 2s;
-                }
-            `}</style>
         </section>
     );
 };
