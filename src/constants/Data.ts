@@ -43,11 +43,29 @@ export const certificates: Certificate[] = [
     issuer: "Dicoding"
   },
   {
-    title: "Certified Course",
-    imageUrl: "/certificates/Dicoding-2.png",
-    credentialLink: "https://www.coursera.org/your-credential",
-    issuer: "Coursera"
-  }
+    title: "Database Design",
+    imageUrl: "/certificates/DD_Design.png",
+    credentialLink: "https://academy.oracle.com/en/oa-web-overview.html#usermenu",
+    issuer: "Oracle"
+  },
+  {
+    title: "Database Foundations",
+    imageUrl: "/certificates/Dfo_new.png",
+    credentialLink: "https://academy.oracle.com/en/oa-web-overview.html#usermenu",
+    issuer: "Oracle"
+  },
+  {
+    title: "Introduction to Network",
+    imageUrl: "/certificates/IN_new.png",
+    credentialLink: "https://www.netacad.com/certificates?issuanceId=f693e675-c5a0-4331-9387-4d05f0af20dd",
+    issuer: "Cisco Networking Academy"
+  },
+  {
+    title: "Switching, Routing, and Wireless Essentials",
+    imageUrl: "/certificates/SRWE_new.png",
+    credentialLink: "https://www.netacad.com/certificates?issuanceId=c5d4ba7e-8b94-45c4-8c9c-67002020d73e",
+    issuer: "Cisco Networking Academy"
+  },
 ];
 
 
