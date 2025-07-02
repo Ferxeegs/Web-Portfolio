@@ -25,7 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 <div className="flex justify-between items-center py-4 sm:py-6">
                     <div className="relative text-xl sm:text-2xl font-bold">
                         <span className="relative z-10 bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent inline-block animate-gradient">
-                            Ferxeegs
+                            Ferxcode
                         </span>
                         <div className="absolute inset-0 blur-xl bg-gradient-to-r from-violet-400/20 via-purple-400/20 to-fuchsia-400/20 animate-glow" />
                     </div>

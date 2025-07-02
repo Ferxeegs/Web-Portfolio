@@ -28,7 +28,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
 
                         {/* Main Title */}
                         <div className="space-y-1 sm:space-y-2">
-                            <h1 className={`text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight transition-all duration-800 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            <h1 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight transition-all duration-800 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                                 }`}>
                                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                                     Full Stack
@@ -41,7 +41,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
 
                             <div className={`space-y-0.5 sm:space-y-1 transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                                 }`}>
-                                <p className="text-sm xs:text-base sm:text-lg lg:text-xl text-gray-300 font-medium">
+                                <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-gray-300 font-medium">
                                     Computer Engineering Student
                                 </p>
                                 <p className="text-xs xs:text-sm sm:text-base text-gray-400">
@@ -53,7 +53,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                         {/* Description */}
                         <div className={`transition-all duration-800 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                             }`}>
-                            <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed max-w-lg">
+                            <p className="text-xs xs:text-sm sm:text-base lg:text-base text-gray-400 leading-relaxed max-w-lg">
                                 Passionate about creating innovative web solutions and building modern applications
                                 with cutting-edge technologies. Always eager to learn and explore new possibilities.
                             </p>
