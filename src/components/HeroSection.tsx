@@ -23,11 +23,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
             <div className="max-w-6xl mx-auto w-full">
                 <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
                     {/* Left Side - Text Content */}
-                    <div className={`space-y-4 sm:space-y-6 lg:space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                    <div className={`space-y-3 sm:space-y-4 lg:space-y-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
                         }`}>
 
                         {/* Main Title */}
-                        <div className="space-y-1 sm:space-y-2">
+                        <div className="space-y-1 text-center lg:text-left">
                             <h1 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight transition-all duration-800 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                                 }`}>
                                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
@@ -39,10 +39,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                                 </span>
                             </h1>
 
-                            <div className={`space-y-0.5 sm:space-y-1 transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            <div className={`space-y-0.5 transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                                 }`}>
                                 <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-gray-300 font-medium">
-                                    Computer Engineering Student
+                                    Computer Engineering Graduate
                                 </p>
                                 <p className="text-xs xs:text-sm sm:text-base text-gray-400">
                                     Diponegoro University
@@ -51,16 +51,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                         </div>
 
                         {/* Description */}
-                        <div className={`transition-all duration-800 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                        <div className={`transition-all duration-800 delay-800 text-center lg:text-left ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                             }`}>
-                            <p className="text-xs xs:text-sm sm:text-base lg:text-base text-gray-400 leading-relaxed max-w-lg">
+                            <p className="text-xs xs:text-sm sm:text-base lg:text-base text-gray-400 leading-relaxed max-w-lg mx-auto lg:mx-0">
                                 Passionate about creating innovative web solutions and building modern applications
                                 with cutting-edge technologies. Always eager to learn and explore new possibilities.
                             </p>
                         </div>
 
                         {/* Social Media Icons */}
-                        <div className={`transition-all duration-800 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                        <div className={`transition-all duration-800 delay-1000 flex justify-center lg:justify-start ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                             }`}>
                             <div className="flex gap-2 sm:gap-3">
                                 <a href="https://github.com/Ferxeegs" target="_blank" rel="noopener noreferrer"
@@ -87,7 +87,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className={`flex flex-col xs:flex-row gap-2 sm:gap-3 lg:gap-4 transition-all duration-800 delay-1200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                        <div className={`flex flex-col xs:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center lg:justify-start transition-all duration-800 delay-1200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                             }`}>
                             <button
                                 onClick={() => scrollToSection('portfolio')}

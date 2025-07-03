@@ -53,14 +53,14 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
     };
 
     return (
-        <section id="about" className="py-8 sm:py-12 lg:py-20 px-4 relative overflow-hidden">
+        <section id="about" className="min-h-screen py-8 sm:py-12 lg:py-20 px-4 relative overflow-hidden flex items-center">
             {/* Background Elements */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute top-0 left-0 w-32 sm:w-64 h-32 sm:h-64 bg-violet-500/3 rounded-full blur-3xl -translate-x-16 sm:-translate-x-32 -translate-y-16 sm:-translate-y-32"></div>
                 <div className="absolute bottom-0 right-0 w-32 sm:w-64 h-32 sm:h-64 bg-purple-500/3 rounded-full blur-3xl translate-x-16 sm:translate-x-32 translate-y-16 sm:translate-y-32"></div>
             </div>
 
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl mx-auto w-full">
                 <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center transition-all duration-1000 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
                 }`}>
@@ -82,12 +82,12 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
                         </div>
 
                         {/* Description */}
-                        <div className={`space-y-4 transition-all duration-800 delay-400 ${
+                        <div className={`space-y-3 transition-all duration-800 delay-400 ${
                             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
                         }`}>
                             <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                                 I am a passionate <span className="text-violet-400 font-semibold">Full Stack Developer</span> and 
-                                <span className="text-purple-400 font-semibold"> Computer Engineering</span> student at Diponegoro University. 
+                                <span className="text-purple-400 font-semibold"> Computer Engineering</span> graduate from Diponegoro University. 
                                 With over 2 years of experience in web development, I specialize in building modern, 
                                 user-friendly applications.
                             </p>
