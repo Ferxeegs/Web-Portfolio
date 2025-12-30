@@ -41,8 +41,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ }) => {
 
     const handleDownloadCV = () => {
         const link = document.createElement('a');
-        link.href = '/CV-Fadlil_Ferdiansyah.pdf';
-        link.download = 'CV-Fadlil-Ferdiansyah.pdf';
+        link.href = '/CV_Fadlil_Ferdiansyah.pdf';
+        link.download = 'CV_Fadlil_Ferdiansyah.pdf';
         link.click();
     };
 

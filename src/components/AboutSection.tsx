@@ -39,8 +39,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ }) => {
     const handleDownloadCV = () => {
         // Replace with actual CV file path
         const link = document.createElement('a');
-        link.href = '/CV-Fadlil_Ferdiansyah.pdf';
-        link.download = 'CV-Fadlil-Ferdiansyah.pdf';
+        link.href = '/CV_Fadlil_Ferdiansyah.pdf';
+        link.download = 'CV_Fadlil_Ferdiansyah.pdf';
         link.click();
     };
 
