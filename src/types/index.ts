@@ -28,16 +28,25 @@ export interface TechStack {
     imageUrl: string;
 }
 
+export interface Publication {
+    title: string;
+    venue?: string;
+    year?: number | string;
+    description?: string;
+    link?: string;
+}
+
 export interface SocialLink {
     Icon: LucideIcon;    // Changed from 'any' to proper Lucide icon type
     href: string;
     label: string;
 }
 
-export type PortfolioItemType = 'projects' | 'certificates' | 'techstack';
+// export type PortfolioItemType = 'projects' | 'certificates' | 'techstack';
+export type PortfolioItemType = 'projects' | 'certificates' | 'techstack' | 'publications';
 
 export interface PortfolioItemProps {
-    item: Project | Certificate | TechStack;
+    item: Project | Certificate | TechStack | Publication;
     type: PortfolioItemType;
     index: number;
 }

@@ -8,7 +8,7 @@ interface AboutSectionProps {
 
 const stats = [
     { icon: Calendar, label: "Experience", value: "2+ Years" },
-    { icon: Award, label: "Projects", value: "8+" },
+    { icon: Award, label: "Projects", value: "10+" },
     { icon: Coffee, label: "Coffee Cups", value: "∞" },
     { icon: MapPin, label: "Location", value: "Semarang, ID" }
 ];

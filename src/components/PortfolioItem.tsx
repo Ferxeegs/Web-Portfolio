@@ -1,14 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
-import { Project, Certificate, TechStack, PortfolioItemProps } from '../types';
+import { Project, Certificate, TechStack, Publication, PortfolioItemProps } from '../types';
 
 const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
-    const isProject = (item: Project | Certificate | TechStack): item is Project => {
-        return 'link' in item;
+    const isPublication = (item: Project | Certificate | TechStack | Publication): item is Publication => {
+        return 'venue' in item || 'year' in item || 'description' in item && !('technologies' in item);
     };
 
-    const isCertificate = (item: Project | Certificate | TechStack): item is Certificate => {
+    const isProject = (item: Project | Certificate | TechStack | Publication): item is Project => {
+        return 'technologies' in item && 'link' in item;
+    };
+
+    const isCertificate = (item: Project | Certificate | TechStack | Publication): item is Certificate => {
         return 'issuer' in item;
     };
 
@@ -60,18 +64,18 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
     };
 
     return (
-        <div 
+        <div
             className={`group relative overflow-visible ${type === 'techstack' ? 'tech-pop' : 'animate-float-up'}`}
             style={{ animationDelay: `${index * (type === 'techstack' ? 50 : 150)}ms` }}
         >
             {isCertificate(item) ? (
-                <div 
+                <div
                     className="relative cursor-pointer overflow-hidden rounded-xl border border-violet-600/20 hover:border-violet-500/50 transition-all duration-300 aspect-video max-h-[200px] sm:max-h-[220px] lg:max-h-[240px] animate-scale-in"
                     style={{ animationDelay: `${index * 100 + 200}ms` }}
                     onClick={() => handleCertificateClick(item.credentialLink)}
                 >
                     <div className="relative w-full h-full">
-                        <img 
+                        <img
                             src={item.imageUrl}
                             alt={item.title}
                             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
@@ -94,14 +98,14 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                         >
                             {(item as Project).imageUrl && (
                                 <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
-                                    <img 
+                                    <img
                                         src={(item as Project).imageUrl}
                                         alt={item.title}
                                         className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                                         onError={handleProjectImageError}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                                    
+
                                     {/* PERBAIKAN: Mengganti <a> menjadi <button> */}
                                     <button
                                         onClick={(e) => handleExternalClick(e, item.link)}
@@ -109,7 +113,7 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                                     >
                                         <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                     </button>
-                                    
+
                                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
                                         <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 tracking-tight drop-shadow-lg">
                                             {item.title}
@@ -147,11 +151,51 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                         </Link>
                     );
                 })()
+            ) : isPublication(item) ? (
+                <article className="group/pub relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/40 via-gray-900/60 to-black/40 border border-gray-800/50 hover:border-violet-500/30 transition-all duration-500 overflow-hidden shadow-2xl">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/5 blur-[50px] rounded-full -mr-16 -mt-16 group-hover/pub:bg-violet-600/10 transition-colors duration-500" />
+
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 relative z-10">
+                        <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-3">
+                                <span className="px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-[10px] uppercase tracking-wider font-semibold">
+                                    {item.year}
+                                </span>
+                                <span className="text-gray-500 text-xs font-medium">
+                                    {item.venue}
+                                </span>
+                            </div>
+
+                            <h3 className="text-xl font-bold text-white group-hover/pub:text-violet-300 transition-colors duration-300 leading-tight">
+                                {item.title}
+                            </h3>
+                        </div>
+
+                        {item.link && (
+                            <button
+                                onClick={(e) => handleExternalClick(e, item.link!)}
+                                className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-violet-600 text-gray-300 hover:text-white rounded-xl border border-white/10 hover:border-violet-400 transition-all duration-300 text-sm group/btn"
+                            >
+                                <span>Read Paper</span>
+                                <ExternalLink className="w-4 h-4 transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                            </button>
+                        )}
+                    </div>
+
+                    <div className="mt-4 relative z-10">
+                        <p className="text-gray-400 text-sm sm:text-base leading-relaxed line-clamp-3 group-hover/pub:text-gray-300 transition-colors duration-300">
+                            {item.description}
+                        </p>
+                    </div>
+
+                    {/* Bottom Border Accent */}
+                    <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-violet-600 to-purple-600 group-hover/pub:w-full transition-all duration-700" />
+                </article>
             ) : (
                 <div className="relative bg-black/40 backdrop-blur-xl border border-gray-800/50 rounded-xl p-4 transition-all duration-300 group-hover:transform group-hover:-translate-y-2 group-hover:rotate-2 group-hover:border-violet-500/50 group-hover:shadow-lg group-hover:shadow-violet-500/20">
                     <div className="flex flex-col items-center gap-3">
                         <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-violet-600/10 rounded-xl border border-violet-600/20 group-hover:border-violet-500/50 transition-all duration-300 p-2 sm:p-3 group-hover:rotate-[-2deg] group-hover:scale-110">
-                            <img 
+                            <img
                                 src={(item as TechStack).imageUrl}
                                 alt={`${(item as TechStack).name} logo`}
                                 className="w-full h-full object-contain transition-all duration-300 group-hover:scale-110"

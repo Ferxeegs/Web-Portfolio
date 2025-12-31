@@ -73,7 +73,7 @@ export const projects: Project[] = [
         ],
         technologies: ["Laravel", "MySQL", "Bootstrap", "JavaScript"],
         link: "https://github.com/Ferxeegs/Arshakatour",
-        imageUrl: "/projects/Arshakatour.png",
+        imageUrl: "/projects/Arshakatour1.png",
         images: [
             "/projects/Arshakatour1.png",
             "/projects/Arshakatour2.png",
@@ -167,7 +167,8 @@ export const techStack: TechStack[] = [
     { name: "MySQL", imageUrl: "/tech/mysql.png" },
     { name: "PHP", imageUrl: "/tech/php.png" },
     { name: "JavaScript", imageUrl: "/tech/javascript.png" },
-    { name: "Laravel", imageUrl: "/tech/laravel.jpg" }
+    { name: "Laravel", imageUrl: "/tech/laravel.jpg" },
+    { name: "WordPress", imageUrl: "/tech/wordpress.png" },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -198,7 +199,19 @@ export const navigationItems = [
 export const portfolioTabs = [
     { key: 'projects', label: 'Projects' },
     { key: 'certificates', label: 'Certificates' },
-    { key: 'techstack', label: 'Tech Stack' }
+    { key: 'techstack', label: 'Tech Stack' },
+    { key: 'publications', label: 'Publications' }
+];
+
+export const publications = [
+    {
+        title: 'Technology-Based Fish Health Service Innovation for Sustainable Aquaculture Practices in Indonesia',
+        venue: 'SPEKTA',
+        year: 2025,
+        description: 'This study introduces Fish Doctor, a scalable platform integrating fish species detection, disease diagnosis, and expert consultation. It bridges the gap between AI-based detection and practical aquaculture needs in developing countries, supporting sustainable practices aligned with SDG 2 (Zero Hunger) and SDG 12 (Responsible Consumption and Production).',
+        link: 'https://journal2.uad.ac.id/index.php/spekta/article/view/13492'
+    },
+    
 ];
 
 export const contactInfo = [

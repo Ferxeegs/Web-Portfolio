@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PortfolioItem from './PortfolioItem';
-import { projects, certificates, techStack, portfolioTabs } from '../constants/Data';
+import { projects, certificates, techStack, portfolioTabs, publications } from '../constants/Data';
 import { PortfolioItemType } from '../types';
 
 interface PortfolioSectionProps {
@@ -69,7 +69,9 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
                     <div className={`grid gap-4 sm:gap-6 p-1 ${
                         activeSection === 'techstack' 
                             ? 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' 
-                            : 'sm:grid-cols-2 lg:grid-cols-3'
+                            : activeSection === 'publications'
+                                ? 'grid-cols-1'
+                                : 'sm:grid-cols-2 lg:grid-cols-3'
                     }`}>
                         {activeSection === 'projects' && projects.map((project, index) => (
                             <PortfolioItem 
@@ -94,6 +96,9 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
                                 type="techstack" 
                                 index={index} 
                             />
+                        ))}
+                        {activeSection === 'publications' && publications.map((pub, i) => (
+                            <PortfolioItem key={`pub-${i}`} item={pub} type="publications" index={i} />
                         ))}
                     </div>
                 </div>
