@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
-import FloatingElements from '../components/FloatingElements';
 import SplashScreen from '../components/SplashScreen';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
@@ -15,6 +14,7 @@ import { usePortfolio } from '../hooks/usePortfolio';
 const Portfolio: React.FC = () => {
     const [showSplash, setShowSplash] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [mounted, setMounted] = useState(false);
     
     const {
         isScrolled,
@@ -24,27 +24,45 @@ const Portfolio: React.FC = () => {
         scrollToSection,
     } = usePortfolio();
 
+    useEffect(() => {
+        setMounted(true);
+        const hasVisited = sessionStorage.getItem('hasVisited');
+        if (hasVisited) {
+            setShowSplash(false);
+            setIsLoaded(true);
+        }
+    }, []);
+
     const handleSplashFinish = () => {
         setShowSplash(false);
-        // Add a small delay to ensure smooth transition
-        setTimeout(() => {
-            setIsLoaded(true);
-        }, 100);
+        sessionStorage.setItem('hasVisited', 'true');
+        setTimeout(() => setIsLoaded(true), 100);
     };
 
-    // Initialize scroll observer after splash
+    // FIX: Logika Scroll Dinamis untuk menangani hash apa pun
     useEffect(() => {
-        if (!showSplash && isLoaded) {
-            // Force a scroll event to check initial visibility
-            const timer = setTimeout(() => {
-                window.dispatchEvent(new Event('scroll'));
-            }, 300);
-            
-            return () => clearTimeout(timer);
-        }
-    }, [showSplash, isLoaded]);
+        if (!showSplash && mounted) {
+            // Ambil hash dari URL (misal: #contact)
+            const currentHash = window.location.hash;
 
-    if (showSplash) {
+            if (currentHash) {
+                // Beri delay sedikit lebih lama (200ms-300ms) 
+                // agar transisi opacity isLoaded selesai dan DOM stabil
+                const timer = setTimeout(() => {
+                    const id = currentHash.replace('#', '');
+                    const element = document.getElementById(id);
+                    
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 300); 
+
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [showSplash, mounted]);
+
+    if (!mounted || showSplash) {
         return <SplashScreen onFinish={handleSplashFinish} />;
     }
 
@@ -52,8 +70,6 @@ const Portfolio: React.FC = () => {
         <div className={`bg-black text-white transition-opacity duration-500 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
         }`}>
-            <FloatingElements />
-            
             <Navigation 
                 isScrolled={isScrolled}
                 isMobileMenuOpen={isMobileMenuOpen}

@@ -8,17 +8,18 @@ export const usePortfolio = () => {
     const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
+        // Fungsi pengecekan scroll
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
 
+        // Jalankan sekali saat mount untuk sinkronisasi posisi scroll browser
+        handleScroll();
+
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach(entry => {
-                if (entry.target.id) {
-                    if (entry.isIntersecting) {
-                        console.log(`Section visible: ${entry.target.id}`);
-                        setVisibleElements(prev => new Set([...prev, entry.target.id]));
-                    }
+                if (entry.target.id && entry.isIntersecting) {
+                    setVisibleElements(prev => new Set([...prev, entry.target.id]));
                 }
             });
         };
@@ -29,30 +30,23 @@ export const usePortfolio = () => {
                 rootMargin: '50px 0px'
             });
 
-            // Observe all sections and animate-on-scroll elements
             const elementsToObserve = document.querySelectorAll('section, .animate-on-scroll');
             elementsToObserve.forEach(element => {
                 if (element.id || element.classList.contains('animate-on-scroll')) {
                     observer.observe(element);
-                    console.log(`Observing: ${element.id || element.className}`);
                 }
             });
 
             return observer;
         };
 
-        // Initialize after component mounts
         const timer = setTimeout(() => {
             const observer = initializeObserver();
             setIsInitialized(true);
-            
-            // Cleanup function
-            return () => {
-                observer.disconnect();
-            };
+            return () => observer.disconnect();
         }, 500);
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         
         return () => {
             window.removeEventListener('scroll', handleScroll);

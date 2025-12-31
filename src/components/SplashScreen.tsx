@@ -9,11 +9,24 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+        // If user has already visited in this session, skip animation entirely
+        const hasVisited = typeof window !== 'undefined' && sessionStorage.getItem('hasVisited') === 'true';
+        if (hasVisited) {
+            setIsVisible(false);
+            setProgress(100);
+            // Immediately notify parent that splash is finished
+            onFinish();
+            return;
+        }
+
         // Animate progress bar
-        const progressInterval = setInterval(() => {
+        let progressInterval: ReturnType<typeof setInterval> | null = null;
+        let timer: ReturnType<typeof setTimeout> | null = null;
+
+        progressInterval = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
-                    clearInterval(progressInterval);
+                    if (progressInterval) clearInterval(progressInterval);
                     return 100;
                 }
                 return prev + 2; // Increase by 2% every interval
@@ -21,14 +34,23 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
         }, 60); // Update every 60ms for smooth animation
 
         // Hide splash screen after progress completes
-        const timer = setTimeout(() => {
+        timer = setTimeout(() => {
+            if (progressInterval) clearInterval(progressInterval);
             setIsVisible(false);
-            setTimeout(onFinish, 500); // Wait for fade out animation
+            // After fade out delay, mark session as visited and call onFinish
+            setTimeout(() => {
+                try {
+                    sessionStorage.setItem('hasVisited', 'true');
+                } catch {
+                    // ignore storage errors
+                }
+                onFinish();
+            }, 500); // Wait for fade out animation
         }, 3200); // Show splash for 3.2 seconds (slightly longer to see 100%)
 
         return () => {
-            clearTimeout(timer);
-            clearInterval(progressInterval);
+            if (timer) clearTimeout(timer);
+            if (progressInterval) clearInterval(progressInterval);
         };
     }, [onFinish]);
 

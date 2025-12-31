@@ -4,9 +4,16 @@ import { LucideIcon } from 'lucide-react';
 export interface Project {
     title: string;
     description: string;
+    longDescription?: string[];
     technologies: string[];
     link: string;
     imageUrl?: string;
+    images?: string[];
+    role?: string;
+    timeline?: string;
+    features?: string[];
+    liveDemo?: string;
+    category?: string;
 }
 
 export interface Certificate {
