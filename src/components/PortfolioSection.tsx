@@ -66,7 +66,7 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
                     </div>
 
                     {/* Portfolio Content */}
-                    <div className={`grid gap-4 sm:gap-6 p-1 ${
+                    <div className={`grid gap-4 sm:gap-6 p-1 items-stretch ${
                         activeSection === 'techstack' 
                             ? 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' 
                             : activeSection === 'publications'

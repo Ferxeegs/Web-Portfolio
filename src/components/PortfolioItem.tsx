@@ -48,15 +48,20 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
     const renderTechnologies = () => {
         if (isProject(item)) {
             return (
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {item.technologies.map((tech: string, techIndex: number) => (
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 max-h-24 overflow-hidden">
+                    {item.technologies.slice(0, 6).map((tech: string, techIndex: number) => (
                         <span
                             key={techIndex}
-                            className="px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 bg-gray-800/50 text-gray-300 rounded-full text-xs sm:text-sm border border-gray-700/50 hover:bg-violet-600/20 hover:text-violet-300 hover:border-violet-500/50 transition-all duration-300 cursor-default backdrop-blur-sm"
+                            className="px-2 py-1 sm:px-2.5 sm:py-1 bg-gray-800/50 text-gray-300 rounded-full text-xs sm:text-sm border border-gray-700/50 hover:bg-violet-600/20 hover:text-violet-300 hover:border-violet-500/50 transition-all duration-300 cursor-default backdrop-blur-sm"
                         >
                             {tech}
                         </span>
                     ))}
+                    {item.technologies.length > 6 && (
+                        <span className="px-2 py-1 sm:px-2.5 sm:py-1 bg-gray-800/30 text-gray-400 rounded-full text-xs sm:text-sm border border-gray-700/30 cursor-default backdrop-blur-sm">
+                            +{item.technologies.length - 6}
+                        </span>
+                    )}
                 </div>
             );
         }
@@ -65,7 +70,7 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
 
     return (
         <div
-            className={`group relative overflow-visible ${type === 'techstack' ? 'tech-pop' : 'animate-float-up'}`}
+            className={`group relative overflow-visible ${type === 'techstack' ? 'tech-pop' : 'animate-float-up'} ${type === 'projects' ? 'h-full' : ''}`}
             style={{ animationDelay: `${index * (type === 'techstack' ? 50 : 150)}ms` }}
         >
             {isCertificate(item) ? (
@@ -94,10 +99,10 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                     return (
                         <Link
                             href={`/projects/${projectSlug}`}
-                            className="relative block bg-black/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 group-hover:transform group-hover:-translate-y-2 group-hover:border-violet-500/50 group-hover:shadow-2xl group-hover:shadow-violet-500/20 cursor-pointer"
+                            className="relative block h-full bg-black/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 group-hover:transform group-hover:-translate-y-2 group-hover:border-violet-500/50 group-hover:shadow-2xl group-hover:shadow-violet-500/20 cursor-pointer flex flex-col"
                         >
                             {(item as Project).imageUrl && (
-                                <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
+                                <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden flex-shrink-0">
                                     <img
                                         src={(item as Project).imageUrl}
                                         alt={item.title}
@@ -122,9 +127,9 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                                 </div>
                             )}
 
-                            <div className="relative p-4 sm:p-6 lg:p-8">
+                            <div className="relative p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
                                 <div className="absolute inset-0 bg-gradient-to-br from-violet-600/0 via-purple-600/0 to-fuchsia-600/0 group-hover:from-violet-600/10 group-hover:via-purple-600/5 group-hover:to-fuchsia-600/10 transition-all duration-700" />
-                                <div className="relative z-10">
+                                <div className="relative z-10 flex-1 flex flex-col">
                                     {!(item as Project).imageUrl && (
                                         <div className="flex justify-between items-start mb-4 sm:mb-6">
                                             <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white group-hover:text-violet-300 transition-all duration-300 tracking-tight pr-2">
@@ -139,10 +144,12 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                                             </button>
                                         </div>
                                     )}
-                                    <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-300">
+                                    <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-300 line-clamp-3 flex-shrink-0">
                                         {item.description}
                                     </p>
-                                    {renderTechnologies()}
+                                    <div className="mt-auto">
+                                        {renderTechnologies()}
+                                    </div>
                                 </div>
                             </div>
                             <div className="absolute -inset-[1px] rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">

@@ -64,6 +64,34 @@ export const projects: Project[] = [
         category: "Progressive Web Application"
     },
     {
+        "title": "UltraPDF",
+        "description": "A high-performance PDF utility platform built with a modern decoupled architecture for lightning-fast document processing and manipulation.",
+        "longDescription": [
+            "UltraPDF is a specialized document management tool designed for high-speed PDF operations. By utilizing a decoupled architecture with Next.js and FastAPI, it provides a seamless user experience while handling resource-intensive tasks such as compression and conversion in the background.",
+            "The core engine leverages Ghostscript for low-level PDF manipulation, ensuring high-fidelity results that meet professional standards. The platform is optimized for performance, security, and scalability, making it a robust solution for both individual and enterprise-level document workflows."
+        ],
+        "technologies": ["Next.js", "Tailwind CSS", "FastAPI", "Python", "Ghostscript", "Docker"],
+        "link": "https://github.com/Ferxeegs/Ultra-PDF",
+        "liveDemo": "https://ultra-pdf.vercel.app",
+        "imageUrl": "/projects/UltraPDF1.png",
+        "images": [
+            "/projects/UltraPDF1.png",
+            "/projects/UltraPDF2.png",
+            "/projects/UltraPDF3.png",
+            "/projects/UltraPDF4.png",
+            "/projects/UltraPDF5.png",
+        ],
+        "role": "FullStack Developer",
+        "timeline": "Dec 2025 - Jan 2026",
+        "features": [
+            "High-Performance PDF Processing via Ghostscript",
+            "Asynchronous Task Handling with FastAPI",
+            "Modern Responsive UI with Next.js & Tailwind CSS",
+            "Advanced Document Optimization & Compression"
+        ],
+        "category": "SaaS / Utility"
+    },
+    {
         title: "Arshakatour",
         description:
             "A tour and travel platform for booking trips across Indonesia. It features diverse destination packages, flexible payment options, and a complete administrative management system for travel agencies.",
