@@ -310,7 +310,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
                         <span className="splash-welcome">Welcome To My</span>
                         <span className="splash-portfolio">Portfolio Website</span>
                     </h1>
-                    <p className="splash-subtitle">Opening the galaxy portal...</p>
+                    <p className="splash-subtitle">Get ready to explore my world!</p>
                 </div>
 
                 <div className="splash-loader">
