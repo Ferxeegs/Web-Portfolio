@@ -9,6 +9,7 @@ import AboutSection from '../components/AboutSection';
 import PortfolioSection from '../components/PortfolioSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import ParticleBackground from '../components/ParticleBackground';
 import { usePortfolio } from '../hooks/usePortfolio';
 
 const Portfolio: React.FC = () => {
@@ -70,6 +71,7 @@ const Portfolio: React.FC = () => {
         <div className={`bg-black text-white transition-opacity duration-500 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
         }`}>
+            <ParticleBackground />
             <Navigation 
                 isScrolled={isScrolled}
                 isMobileMenuOpen={isMobileMenuOpen}
@@ -77,7 +79,7 @@ const Portfolio: React.FC = () => {
                 scrollToSection={scrollToSection}
             />
 
-            <main className="relative">
+            <main className="relative z-10">
                 <HeroSection scrollToSection={scrollToSection} />
                 <AboutSection visibleElements={visibleElements} />
                 <PortfolioSection visibleElements={visibleElements} />
