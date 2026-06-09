@@ -307,7 +307,7 @@ export class ParticleSystem {
 
     private draw(): void {
         const { ctx, width, height } = this;
-        const { connectionDistance, particleRadius, lineOpacity, dotOpacity, colors } = this.config;
+        const { connectionDistance, lineOpacity, dotOpacity, colors } = this.config;
 
         ctx.clearRect(0, 0, width, height);
         this.buildSpatialGrid();
