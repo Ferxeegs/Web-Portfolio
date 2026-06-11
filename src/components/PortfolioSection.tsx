@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PortfolioItem from './PortfolioItem';
 import { projects, certificates, techStack, portfolioTabs, publications } from '../constants/Data';
 import { PortfolioItemType } from '../types';
@@ -7,9 +7,35 @@ interface PortfolioSectionProps {
     visibleElements: Set<string>;
 }
 
+const TAB_TRANSITION_MS = 220;
+
+const sectionContent: Record<PortfolioItemType, React.ReactNode> = {
+    projects: projects.map((project, index) => (
+        <PortfolioItem key={project.title} item={project} type="projects" index={index} />
+    )),
+    certificates: certificates.map((cert, index) => (
+        <PortfolioItem key={cert.title} item={cert} type="certificates" index={index} />
+    )),
+    techstack: techStack.map((tech, index) => (
+        <PortfolioItem key={tech.name} item={tech} type="techstack" index={index} />
+    )),
+    publications: publications.map((pub, i) => (
+        <PortfolioItem key={`pub-${i}`} item={pub} type="publications" index={i} />
+    )),
+};
+
+const gridClassBySection: Record<PortfolioItemType, string> = {
+    techstack: 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6',
+    publications: 'grid-cols-1',
+    projects: 'sm:grid-cols-2 lg:grid-cols-3',
+    certificates: 'sm:grid-cols-2 lg:grid-cols-3',
+};
+
 const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
     const [activeSection, setActiveSection] = useState<PortfolioItemType>('projects');
+    const [panelVisible, setPanelVisible] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
+    const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -30,6 +56,24 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
 
         return () => observer.disconnect();
     }, []);
+
+    useEffect(() => {
+        return () => {
+            if (transitionTimerRef.current) clearTimeout(transitionTimerRef.current);
+        };
+    }, []);
+
+    const switchSection = useCallback((key: PortfolioItemType) => {
+        if (key === activeSection && panelVisible) return;
+
+        setPanelVisible(false);
+
+        if (transitionTimerRef.current) clearTimeout(transitionTimerRef.current);
+        transitionTimerRef.current = setTimeout(() => {
+            setActiveSection(key);
+            requestAnimationFrame(() => setPanelVisible(true));
+        }, TAB_TRANSITION_MS);
+    }, [activeSection, panelVisible]);
 
     return (
         <section id="portfolio" className="py-8 sm:py-12 lg:py-20 px-4 relative">
@@ -52,7 +96,7 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
                             {portfolioTabs.map((tab) => (
                                 <button
                                     key={tab.key}
-                                    onClick={() => setActiveSection(tab.key as PortfolioItemType)}
+                                    onClick={() => switchSection(tab.key as PortfolioItemType)}
                                     className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-medium transition-all duration-300 text-sm sm:text-base ${
                                         activeSection === tab.key
                                             ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-500/25'
@@ -66,40 +110,12 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ }) => {
                     </div>
 
                     {/* Portfolio Content */}
-                    <div className={`grid gap-4 sm:gap-6 p-1 items-stretch ${
-                        activeSection === 'techstack' 
-                            ? 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' 
-                            : activeSection === 'publications'
-                                ? 'grid-cols-1'
-                                : 'sm:grid-cols-2 lg:grid-cols-3'
-                    }`}>
-                        {activeSection === 'projects' && projects.map((project, index) => (
-                            <PortfolioItem 
-                                key={project.title} 
-                                item={project} 
-                                type="projects" 
-                                index={index} 
-                            />
-                        ))}
-                        {activeSection === 'certificates' && certificates.map((cert, index) => (
-                            <PortfolioItem 
-                                key={cert.title} 
-                                item={cert} 
-                                type="certificates" 
-                                index={index} 
-                            />
-                        ))}
-                        {activeSection === 'techstack' && techStack.map((tech, index) => (
-                            <PortfolioItem 
-                                key={tech.name} 
-                                item={tech} 
-                                type="techstack" 
-                                index={index} 
-                            />
-                        ))}
-                        {activeSection === 'publications' && publications.map((pub, i) => (
-                            <PortfolioItem key={`pub-${i}`} item={pub} type="publications" index={i} />
-                        ))}
+                    <div
+                        className={`portfolio-panel grid gap-4 sm:gap-6 p-1 items-stretch ${gridClassBySection[activeSection]} ${
+                            panelVisible ? 'portfolio-panel--visible' : 'portfolio-panel--hidden'
+                        }`}
+                    >
+                        {sectionContent[activeSection]}
                     </div>
                 </div>
             </div>

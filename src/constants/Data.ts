@@ -72,7 +72,7 @@ export const projects: Project[] = [
         ],
         "technologies": ["Next.js", "Tailwind CSS", "FastAPI", "Python", "Ghostscript", "Docker"],
         "link": "https://github.com/Ferxeegs/Ultra-PDF",
-        "liveDemo": "https://ultra-pdf.vercel.app",
+        "liveDemo": "https://ultrapdf.my.id",
         "imageUrl": "/projects/UltraPDF1.png",
         "images": [
             "/projects/UltraPDF1.png",
@@ -90,6 +90,89 @@ export const projects: Project[] = [
             "Advanced Document Optimization & Compression"
         ],
         "category": "SaaS / Utility"
+    },
+    {
+        "title": "E-Laundry Pondok",
+        "description": "A comprehensive laundry management platform featuring precise lifecycle tracking and automated billing workflows for structured student housing.",
+        "longDescription": [
+            "E-Laundry Pondok is a specialized workflow automation system built to streamline high-volume laundry operations in residential student complexes. Moving away from manual logging, the platform introduces structured tracking from drop-off to pickup, integrated with dynamic QR code generation for seamless order identification.",
+            "The backend architecture leverages a robust relational database schema to handle student multi-tenancy, granular status updates, and automated monthly invoicing. It features native integration with the Xendit payment gateway, providing secure, real-time transaction updates via webhooks for efficient financial operations."
+        ],
+        "technologies": ["React", "FastAPI", "Tailwind CSS", "Alpine.js", "PostgreSQL", "Xendit API", "Docker"],
+        "link": "https://github.com/Ferxeegs/Admin-Laundry-App",
+        "liveDemo": "https://elaundry.ferxcode.my.id",
+        "imageUrl": "/projects/ELaundry1.png",
+        "images": [
+            "/projects/ELaundry1.png",
+            "/projects/ELaundry2.png",
+            "/projects/ELaundry3.png",
+            "/projects/ELaundry4.png",
+        ],
+        "role": "FullStack Developer",
+        "timeline": "Mar 2026 - Apr 2026",
+        "features": [
+            "Granular Order Lifecycle Tracking via QR Code",
+            "Automated Monthly Student Invoicing & Billing",
+            "Seamless Xendit Payment Gateway Integration with Webhooks",
+            "Multi-tenant Student Data & Package Management"
+        ],
+        "category": "SaaS / Management System"
+    },
+    {
+        "title": "DipoCheck",
+        "description": "A secure digital verification platform designed to validate medical health certificates issued by Klinik Pratama Diponegoro I.",
+        "longDescription": [
+            "DipoCheck is a security-focused utility platform engineered to counter certificate forgery and streamline the verification of medical health documents. The system provides public authorities and institutions with instant validation of certificate authenticity through secure, cryptographic data matching.",
+            "Built with a high-performance decoupled architecture, the web client interacts with a lightweight FastAPI backend to fetch and verify records instantly. By prioritizing performance and absolute security, the system eliminates traditional bureaucratic verification delays while maintaining strict data integrity."
+        ],
+        "technologies": ["React", "Tailwind CSS", "FastAPI", "Tesseract.js", "PostgreSQL", "Docker"],
+        "link": "https://github.com/Ferxeegs/dipocheck",
+        "liveDemo": "https://klinikdipo.ferxcode.my.id",
+        "imageUrl": "/projects/DipoCheck1.png",
+        "images": [
+            "/projects/DipoCheck1.png",
+            "/projects/DipoCheck2.png",
+            "/projects/DipoCheck3.png",
+            "/projects/DipoCheck4.png",
+            "/projects/DipoCheck5.png"
+        ],
+        "role": "FullStack Developer",
+        "timeline": "April 2026 - May 2026",
+        "features": [
+            "Instant Authenticity Verification via Secure QR Scanning",
+            "High-Performance Decoupled API Architecture",
+            "Lightweight and Secure Medical Record Lookups",
+            "Responsive, Clean Dashboard for Administrative Controls"
+        ],
+        "category": "Security / Utility"
+    },
+    {
+        "title": "Shodiqly",
+        "description": "A precise financial calculation platform built to compute the Cost of Goods Sold (HPP) for university asset and venue rentals.",
+        "longDescription": [
+            "Shodiqly is a financial utility application designed to standardize and automate the calculation of Cost of Goods Sold (HPP - Harga Pokok Penjualan) for commercial assets and venue rentals under Universitas Diponegoro. It eliminates manual spreadsheet errors by enforcing structured financial formulas and transparent data auditing.",
+            "The platform features a strict relational schema designed for financial accuracy, allowing administrators to configure multi-tier payment types, operational depreciation, and precise tax overhead variables. It provides institutional stakeholders with clear financial transparency, ensuring optimal pricing strategies and asset yield management."
+        ],
+        "technologies": ["React", "FastAPI", "Tailwind CSS", "Alpine.js", "PostgreSQL", "Docker"],
+        "link": "https://github.com/Ferxeegs/calculator_hpp",
+        "liveDemo": "https://shodiqly.undip.id",
+        "imageUrl": "/projects/Shodiqly1.png",
+        "images": [
+            "/projects/Shodiqly1.png",
+            "/projects/Shodiqly2.png",
+            "/projects/Shodiqly3.png",
+            "/projects/Shodiqly4.png",
+            "/projects/Shodiqly5.png",
+        ],
+        "role": "FullStack Developer",
+        "timeline": "Feb 2026 - Mar 2026",
+        "features": [
+            "High-Precision HPP Calculation Engine for Asset Rental",
+            "Dynamic Configuration for Complex Tax & Overhead Variables",
+            "Flexible Database Schema for Multi-Tier Payment Types",
+            "Comprehensive Financial Auditing and Calculation Reports"
+        ],
+        "category": "Financial / Business Intelligence"
     },
     {
         title: "Arshakatour",
@@ -239,7 +322,7 @@ export const publications = [
         description: 'This study introduces Fish Doctor, a scalable platform integrating fish species detection, disease diagnosis, and expert consultation. It bridges the gap between AI-based detection and practical aquaculture needs in developing countries, supporting sustainable practices aligned with SDG 2 (Zero Hunger) and SDG 12 (Responsible Consumption and Production).',
         link: 'https://journal2.uad.ac.id/index.php/spekta/article/view/13492'
     },
-    
+
 ];
 
 export const contactInfo = [

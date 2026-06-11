@@ -3,7 +3,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ExternalLink, Github, ArrowLeft, Code2, Layers, Calendar, User } from 'lucide-react';
+import { ExternalLink, Github, ArrowLeft, Code2, Layers, Calendar, User, Sparkles } from 'lucide-react';
 import { projects } from '../../../constants/Data';
 import ProjectGallery from '../../../components/ProjectGallery';
 import { Project } from '../../../types';
@@ -57,7 +57,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     if (!project) return notFound();
 
     return (
-        <div className="min-h-screen bg-black text-gray-100 pb-20">
+        <div className="min-h-screen bg-black text-gray-100 pb-20 relative overflow-x-hidden">
             {/* Background Decor */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[5%] left-[-15%] w-[40%] h-[40%] bg-violet-600/10 blur-[140px] rounded-full animate-pulse" />
@@ -70,7 +70,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 relative z-10">
                 <Link
                     href="/#portfolio"
-                    className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-xl border border-gray-700/50 hover:border-violet-500/50 hover:from-violet-500/10 hover:to-fuchsia-500/10 transition-all duration-300 mb-10 shadow-lg hover:shadow-violet-500/20"
+                    className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-violet-500/50 hover:bg-violet-500/10 transition-all duration-300 mb-10 shadow-lg hover:shadow-violet-500/15"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     <span className="text-sm font-medium">Back to Portfolio</span>
@@ -82,27 +82,34 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                             images={
                                 project.images && project.images.length
                                     ? project.images
-                                    : [project.imageUrl ?? '/images/project-placeholder.png', project.imageUrl ?? '/images/project-placeholder.png', project.imageUrl ?? '/images/project-placeholder.png']
+                                    : [project.imageUrl ?? '/images/project-placeholder.png']
                             }
                             alt={project.title}
                         />
 
                         <div className="space-y-6">
-                            <h1 className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-white via-violet-200 to-fuchsia-300 bg-clip-text text-transparent leading-tight">
-                                {project.title}
-                            </h1>
+                            <div className="space-y-2">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold tracking-wider uppercase">
+                                    <Code2 className="w-3.5 h-3.5" />
+                                    {project.category}
+                                </div>
+                                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-white via-violet-100 to-fuchsia-200 bg-clip-text text-transparent leading-tight tracking-tight">
+                                    {project.title}
+                                </h1>
+                            </div>
 
-                            <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-sm border border-gray-700/50">
+                            <div className="relative p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-gray-950/60 to-gray-900/40 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/45 to-transparent" />
                                 <div className="absolute -top-3 -left-3 w-16 h-16 bg-violet-500/10 blur-2xl rounded-full" />
                                 <div className="relative z-10 space-y-4 text-justify">
                                     {project.longDescription && project.longDescription.length > 0 ? (
                                         project.longDescription.map((paragraph, i) => (
-                                            <p key={i} className="text-lg text-gray-300 leading-relaxed">
+                                            <p key={i} className="text-base sm:text-lg text-gray-300 leading-relaxed">
                                                 {paragraph}
                                             </p>
                                         ))
                                     ) : (
-                                        <p className="text-lg text-gray-300 leading-relaxed">
+                                        <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                                             {project.description}
                                         </p>
                                     )}
@@ -113,7 +120,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                         {project.features && (
                             <div className="space-y-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-violet-500/10 border border-violet-500/20">
+                                    <div className="p-2 rounded-xl bg-violet-500/10 border border-violet-500/20 shadow-[0_0_8px_rgba(139,92,246,0.15)]">
                                         <Layers className="w-5 h-5 text-violet-400" />
                                     </div>
                                     <h3 className="text-2xl font-bold text-white">Key Features</h3>
@@ -122,13 +129,14 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                     {project.features.map((feature, i) => (
                                         <div
                                             key={i}
-                                            className="group relative p-5 rounded-2xl bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-sm border border-gray-700/50 hover:border-violet-500/50 transition-all duration-300 hover:scale-[1.02]"
+                                            className="group relative p-5 rounded-2xl bg-gradient-to-b from-gray-950/40 to-gray-900/20 backdrop-blur-md border border-white/5 hover:border-violet-500/30 transition-all duration-300 hover:scale-[1.01] overflow-hidden"
                                         >
+                                            <div className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-gradient-to-b from-violet-500 to-fuchsia-500 rounded-r-md scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
                                             <div className="flex items-start gap-3 relative z-10">
-                                                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shrink-0 mt-0.5">
-                                                    <div className="w-2 h-2 rounded-full bg-white" />
+                                                <div className="p-1.5 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400 shrink-0 mt-0.5">
+                                                    <Sparkles className="w-4 h-4" />
                                                 </div>
-                                                <span className="text-gray-200 text-sm leading-relaxed">{feature}</span>
+                                                <span className="text-gray-300 text-sm leading-relaxed">{feature}</span>
                                             </div>
                                         </div>
                                     ))}
@@ -141,9 +149,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                         <div className="sticky top-24 space-y-6">
                             <div className="relative group">
                                 <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
-                                <div className="relative p-7 rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl border border-gray-700/50 space-y-6 shadow-2xl">
+                                <div className="relative p-7 rounded-3xl bg-gradient-to-b from-gray-950/80 to-gray-900/80 backdrop-blur-xl border border-white/10 space-y-6 shadow-2xl">
+                                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-fuchsia-500/40 to-transparent" />
                                     <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                                        <div className="w-1 h-6 bg-gradient-to-b from-violet-500 to-fuchsia-500 rounded-full" />
+                                        <div className="w-1.5 h-6 bg-gradient-to-b from-violet-500 to-fuchsia-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
                                         Project Details
                                     </h3>
 
@@ -153,13 +162,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                         <DetailItem icon={<Code2 className="w-4 h-4 text-blue-400" />} label="Category" value={project.category} />
                                     </div>
 
-                                    <div className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
+                                    <div className="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
 
                                     <div className="space-y-4">
-                                        <h4 className="text-sm font-bold uppercase tracking-wider text-violet-400">Tech Stack</h4>
+                                        <h4 className="text-xs font-bold uppercase tracking-wider text-violet-400">Tech Stack</h4>
                                         <div className="flex flex-wrap gap-2">
                                             {project.technologies.map((tech, i) => (
-                                                <span key={i} className="px-3 py-2 bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 border border-violet-500/20 text-violet-300 rounded-xl text-xs font-semibold">
+                                                <span key={i} className="px-3 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 rounded-xl text-xs font-semibold backdrop-blur-md hover:bg-violet-500/20 hover:border-violet-500/40 transition-colors">
                                                     {tech}
                                                 </span>
                                             ))}
@@ -168,15 +177,15 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
                                     <div className="space-y-3 pt-2">
                                         {project.link && (
-                                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="group/btn relative flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold transition-all overflow-hidden shadow-lg shadow-violet-600/30">
+                                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="group/btn relative flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold hover:shadow-xl hover:shadow-violet-600/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 overflow-hidden shadow-lg shadow-violet-600/25">
                                                 <Github className="w-5 h-5 relative z-10" />
                                                 <span className="relative z-10">View Repository</span>
                                             </a>
                                         )}
                                         {project.liveDemo && (
-                                            <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="group/btn relative flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-transparent border-2 border-gray-700 text-white font-bold transition-all">
+                                            <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="group/btn relative flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
                                                 <ExternalLink className="w-5 h-5" />
-                                                Live Demo
+                                                View Project
                                             </a>
                                         )}
                                     </div>
@@ -193,10 +202,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 // Komponen Pembantu agar kode lebih bersih
 function DetailItem({ icon, label, value }: { icon: React.ReactNode, label: string, value?: string }) {
     return (
-        <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-800/50 border border-gray-700/50">
-            <div className="p-2 rounded-lg bg-gray-900/50">{icon}</div>
+        <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+            <div className="p-2.5 rounded-xl bg-black/40 text-violet-400 shrink-0">{icon}</div>
             <div>
-                <p className="text-xs text-gray-400">{label}</p>
+                <p className="text-xs text-gray-400 font-medium">{label}</p>
                 <p className="text-sm text-white font-semibold">{value || 'N/A'}</p>
             </div>
         </div>

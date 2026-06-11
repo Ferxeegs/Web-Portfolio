@@ -636,3 +636,20 @@ section {
   opacity: 0;
 }
 
+.portfolio-panel {
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.portfolio-panel--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.portfolio-panel--hidden {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+  pointer-events: none;
+}
+

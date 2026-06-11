@@ -70,13 +70,12 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
 
     return (
         <div
-            className={`group relative overflow-visible ${type === 'techstack' ? 'tech-pop' : 'animate-float-up'} ${type === 'projects' ? 'h-full' : ''}`}
-            style={{ animationDelay: `${index * (type === 'techstack' ? 50 : 150)}ms` }}
+            className={`group relative overflow-visible ${type === 'techstack' ? 'tech-pop' : ''} ${type === 'projects' ? 'h-full' : ''}`}
+            style={type === 'techstack' ? { animationDelay: `${index * 50}ms` } : undefined}
         >
             {isCertificate(item) ? (
                 <div
-                    className="relative cursor-pointer overflow-hidden rounded-xl border border-violet-600/20 hover:border-violet-500/50 transition-all duration-300 aspect-video max-h-[200px] sm:max-h-[220px] lg:max-h-[240px] animate-scale-in"
-                    style={{ animationDelay: `${index * 100 + 200}ms` }}
+                    className="relative cursor-pointer overflow-hidden rounded-xl border border-violet-600/20 hover:border-violet-500/50 transition-all duration-300 aspect-video max-h-[200px] sm:max-h-[220px] lg:max-h-[240px]"
                     onClick={() => handleCertificateClick(item.credentialLink)}
                 >
                     <div className="relative w-full h-full">
