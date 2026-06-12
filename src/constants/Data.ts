@@ -1,6 +1,6 @@
 // constants/data.ts
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { Project, Certificate, TechStack, SocialLink } from '../types/index';
+import { Project, Certificate, TechStack, SocialLink, Experience } from '../types/index';
 
 export const projects: Project[] = [
     {
@@ -300,11 +300,103 @@ export const socialLinks: SocialLink[] = [
     }
 ];
 
+export const experiences: Experience[] = [
+    {
+        id: 'exp-undip-fullstack',
+        type: 'work',
+        title: 'Full Stack Developer',
+        organization: 'Universitas Diponegoro',
+        location: 'Semarang, Indonesia',
+        period: 'Sep 2025 — Present',
+        current: true,
+        accent: 'violet',
+        description:
+            'Developing, deploying, and maintaining digital platforms for university asset management, financial systems, and public service verification, utilizing UNDIP’s internal virtual machine (VM) infrastructure.',
+        highlights: [
+            'Built Aroomi — a multi-tenant venue & asset rental platform deployed on institutional VM using Filament PHP backoffice.',
+            'Developed Shodiqly HPP calculator and DipoCheck certificate verification with optimized production environments.',
+            'Configured and delivered containerized production systems using Docker, PostgreSQL, and Nginx reverse proxies on self-hosted VM environments.',
+        ],
+        technologies: ['Laravel', 'Vue Js', 'React', 'Nest Js', 'FastAPI', 'MySQL', 'PostgreSQL', 'Docker', 'Nginx', 'Ubuntu Server'],
+    },
+    {
+        id: 'exp-jaya-techno',
+        type: 'work',
+        title: 'Full Stack Developer',
+        organization: 'Jaya Techno',
+        subtitle: 'CV. Arshaka Jaya Kreasindo',
+        location: 'Cilacap, Indonesia',
+        period: 'Feb 2026 — Present',
+        current: true,
+        accent: 'cyan',
+        description:
+            'Building client-facing digital products and managing production infrastructure for travel, SaaS, and business platforms under the Arshaka Jaya Kreasindo group.',
+        highlights: [
+            'Continued and expanded Arshakatour with full-stack features and admin management',
+            'Shipped UltraPDF, E-Laundry Pondok, and other production-ready web applications',
+            'Manage and maintain Jaya Techno servers — deployment, Nginx, Docker, and uptime monitoring',
+        ],
+        technologies: ['Next.js', 'FastAPI', 'React', 'Astro Js', 'Tailwind CSS', 'Docker', 'PostgreSQL', 'MySQL', 'Nginx'],
+    },
+    {
+        id: 'exp-dokter-ikan',
+        type: 'work',
+        title: 'Full Stack Developer (Internship)',
+        organization: 'PT Rekayasa Agromarin Indonesia',
+        location: 'Remote',
+        period: 'Dec 2024 — May 2025',
+        accent: 'violet',
+        description:
+            'Contributed to an AI-powered PWA for aquaculture farmers, integrating computer vision and expert-system diagnostics for fish health management.',
+        highlights: [
+            'Implemented YOLO-based species detection and symptom-based diagnosis flows',
+            'Built offline-first PWA with Next.js, Express, and Flask microservices',
+            'Co-authored published research on technology-based fish health services (SPEKTA 2025)',
+        ],
+        technologies: ['Next.js', 'Express.js', 'Flask', 'PyTorch', 'TypeScript', 'MySQL'],
+    },
+    {
+        id: 'exp-arshaka-internship',
+        type: 'work',
+        title: 'Backend Developer (Internship)',
+        organization: 'CV. Arshaka Jaya Kreasindo',
+        subtitle: 'Jaya Techno',
+        location: 'Semarang, Indonesia',
+        period: 'Dec 2023 — Feb 2024',
+        accent: 'cyan',
+        description:
+            'Completed an internship focused on backend development for travel and tourism digital products within the Arshaka Jaya Kreasindo group.',
+        highlights: [
+            'Developed Arshakatour — tour & travel booking platform with Laravel backend',
+            'Implemented tour package management and secure booking workflows',
+            'Built centralized admin panel for agency operations and reservation tracking',
+        ],
+        technologies: ['Laravel', 'MySQL', 'Bootstrap', 'JavaScript'],
+    },
+    {
+        id: 'exp-undip-edu',
+        type: 'education',
+        title: 'Bachelor of Computer Engineering',
+        organization: 'Universitas Diponegoro',
+        location: 'Semarang, Indonesia',
+        period: '2021 — 2025',
+        accent: 'fuchsia',
+        description:
+            'Studied computer engineering with emphasis on software development, networking, and applied technology for real-world problem solving.',
+        highlights: [
+            'Graduate of Diponegoro University Computer Engineering program',
+            'Hands-on capstone and industry-aligned project experience',
+            'Foundation in algorithms, databases, and system design',
+        ],
+    },
+];
+
 export const navigationItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
     { id: 'portfolio', label: 'Portfolio' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
 ];
 
 export const portfolioTabs = [

@@ -50,3 +50,22 @@ export interface PortfolioItemProps {
     type: PortfolioItemType;
     index: number;
 }
+
+export type ExperienceType = 'work' | 'education';
+
+export type ExperienceAccent = 'violet' | 'cyan' | 'fuchsia';
+
+export interface Experience {
+    id: string;
+    type: ExperienceType;
+    title: string;
+    organization: string;
+    subtitle?: string;
+    location: string;
+    period: string;
+    current?: boolean;
+    description: string;
+    highlights: string[];
+    technologies?: string[];
+    accent?: ExperienceAccent;
+}

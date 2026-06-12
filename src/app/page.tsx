@@ -6,6 +6,7 @@ import Navigation from '../components/Navigation';
 import SplashScreen from '../components/SplashScreen';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
+import ExperienceSection from '../components/ExperienceSection';
 import PortfolioSection from '../components/PortfolioSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
@@ -82,6 +83,7 @@ const Portfolio: React.FC = () => {
             <main className="relative z-10">
                 <HeroSection scrollToSection={scrollToSection} />
                 <AboutSection visibleElements={visibleElements} />
+                <ExperienceSection visibleElements={visibleElements} />
                 <PortfolioSection visibleElements={visibleElements} />
                 <ContactSection visibleElements={visibleElements} />
             </main>

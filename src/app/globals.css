@@ -653,3 +653,21 @@ section {
   pointer-events: none;
 }
 
+/* === Experience Section === */
+.experience-role,
+.experience-past {
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+
+.experience-role--hidden,
+.experience-past--hidden {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.experience-role--visible,
+.experience-past--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
