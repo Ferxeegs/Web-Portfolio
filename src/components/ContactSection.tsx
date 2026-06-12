@@ -1,31 +1,92 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { Mail, Phone, MapPin, Copy, Check, MessageCircle, Download, ExternalLink } from 'lucide-react';
+import {
+    Mail,
+    Phone,
+    MapPin,
+    Copy,
+    Check,
+    MessageCircle,
+    Download,
+    Linkedin,
+    ArrowUpRight,
+} from 'lucide-react';
 
 interface ContactSectionProps {
     visibleElements: Set<string>;
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({ }) => {
+const contactMethods = [
+    {
+        icon: Mail,
+        label: 'Email',
+        value: 'fadlilferdy88@gmail.com',
+        type: 'email',
+        href: 'mailto:fadlilferdy88@gmail.com',
+        copyText: 'Email copied',
+    },
+    {
+        icon: Phone,
+        label: 'Phone',
+        value: '+62 8213 3513 522',
+        type: 'phone',
+        href: 'tel:+6282133513522',
+        copyText: 'Phone copied',
+    },
+    {
+        icon: MapPin,
+        label: 'Location',
+        value: 'Semarang, Indonesia',
+        type: 'location',
+        href: 'https://maps.google.com/?q=Semarang,Indonesia',
+        copyText: 'Location copied',
+    },
+] as const;
+
+const quickLinks = [
+    {
+        title: 'WhatsApp',
+        description: 'Start a conversation',
+        icon: MessageCircle,
+        href: 'https://wa.me/6282133513522?text=Hello%20Fadlil,%20I%20would%20like%20to%20discuss%20a%20project',
+        accent: 'hover:border-emerald-500/35 hover:bg-emerald-500/[0.06]',
+        iconClass: 'text-emerald-400',
+    },
+    {
+        title: 'LinkedIn',
+        description: 'Connect professionally',
+        icon: Linkedin,
+        href: 'https://linkedin.com/in/fadlilfer',
+        accent: 'hover:border-blue-500/35 hover:bg-blue-500/[0.06]',
+        iconClass: 'text-blue-400',
+    },
+    {
+        title: 'Download CV',
+        description: 'View my resume',
+        icon: Download,
+        action: 'cv' as const,
+        accent: 'hover:border-violet-500/35 hover:bg-violet-500/[0.06]',
+        iconClass: 'text-violet-400',
+    },
+];
+
+const ContactSection: React.FC<ContactSectionProps> = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
     useEffect(() => {
+        const section = document.getElementById('contact');
+        if (!section) return;
+
         const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsVisible(true);
-                    }
-                });
+            ([entry]) => {
+                if (entry.isIntersecting) setIsVisible(true);
             },
-            { threshold: 0.1, rootMargin: '50px 0px' }
+            { threshold: 0.1, rootMargin: '50px 0px' },
         );
 
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            observer.observe(contactSection);
-        }
-
+        observer.observe(section);
         return () => observer.disconnect();
     }, []);
 
@@ -35,7 +96,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ }) => {
             setCopiedItem(type);
             setTimeout(() => setCopiedItem(null), 2000);
         } catch (err) {
-            console.error('Failed to copy: ', err);
+            console.error('Failed to copy:', err);
         }
     };
 
@@ -46,180 +107,152 @@ const ContactSection: React.FC<ContactSectionProps> = ({ }) => {
         link.click();
     };
 
-    const contactInfo = [
-        {
-            icon: Mail,
-            text: "fadlilferdy88@gmail.com",
-            type: "email",
-            action: () => window.open("mailto:fadlilferdy88@gmail.com", "_blank"),
-            copyText: "Email copied!"
-        },
-        {
-            icon: Phone,
-            text: "+62 8213 3513 522",
-            type: "phone",
-            action: () => window.open("tel:+6282133513522", "_blank"),
-            copyText: "Phone number copied!"
-        },
-        {
-            icon: MapPin,
-            text: "Semarang, Indonesia",
-            type: "location",
-            action: () => window.open("https://maps.google.com/?q=Semarang,Indonesia", "_blank"),
-            copyText: "Location copied!"
-        }
-    ];
-
-    const quickActions = [
-        {
-            title: "WhatsApp Chat",
-            description: "Quick message via WhatsApp",
-            icon: MessageCircle,
-            action: () => window.open("https://wa.me/6282133513522?text=Hello%20Fadlil,%20I%20would%20like%20to%20discuss%20a%20project", "_blank"),
-            gradient: "from-green-500/20 to-emerald-600/20",
-            border: "border-green-500/50 hover:border-emerald-400",
-            iconColor: "text-green-500 group-hover:text-emerald-400"
-        },
-        {
-            title: "Download CV",
-            description: "Get my latest resume",
-            icon: Download,
-            action: handleDownloadCV,
-            gradient: "from-blue-500/20 to-cyan-600/20",
-            border: "border-blue-500/50 hover:border-cyan-400",
-            iconColor: "text-blue-500 group-hover:text-cyan-400"
-        },
-        {
-            title: "View LinkedIn",
-            description: "Professional network",
-            icon: ExternalLink,
-            action: () => window.open("https://linkedin.com/in/fadlilfer", "_blank"),
-            gradient: "from-indigo-500/20 to-purple-600/20",
-            border: "border-indigo-500/50 hover:border-purple-400",
-            iconColor: "text-indigo-500 group-hover:text-purple-400"
-        }
-    ];
+    const fadeUp = 'transition-all duration-700 ease-out';
+    const visible = isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6';
 
     return (
-        <section id="contact" className="py-8 sm:py-12 lg:py-20 px-4 relative overflow-hidden">
-            {/* Background Effects */}
-            <div className="absolute inset-0 -z-10">
-                <div className="absolute top-0 left-0 w-32 sm:w-64 h-32 sm:h-64 bg-violet-500/3 rounded-full blur-3xl -translate-x-16 sm:-translate-x-32 -translate-y-16 sm:-translate-y-32"></div>
-                <div className="absolute bottom-0 right-0 w-32 sm:w-64 h-32 sm:h-64 bg-purple-500/3 rounded-full blur-3xl translate-x-16 sm:translate-x-32 translate-y-16 sm:translate-y-32"></div>
+        <section id="contact" className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+            <div className="pointer-events-none absolute inset-0 -z-10">
+                <div className="absolute -left-24 top-1/4 h-64 w-64 rounded-full bg-violet-600/[0.06] blur-3xl" />
+                <div className="absolute -right-24 bottom-1/4 h-64 w-64 rounded-full bg-purple-600/[0.05] blur-3xl" />
             </div>
 
-            <div className="max-w-6xl mx-auto relative z-10">
-                <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-                    }`}>
-                    {/* Header */}
-                    <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                            Let&apos;s Work Together
-                        </h2>
-                        <p className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto px-4 leading-relaxed">
-                            Ready to bring your ideas to life? Get in touch and let&apos;s create something amazing together.
-                        </p>
+            <div className="relative z-10 mx-auto max-w-5xl">
+                <div
+                    className={`mb-10 text-center sm:mb-14 ${fadeUp} ${visible}`}
+                    style={{ transitionDelay: '0ms' }}
+                >
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.35em] text-violet-400/80 sm:text-sm">
+                        Get In Touch
+                    </p>
+                    <h2 className="mb-3 bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-2xl font-bold text-transparent sm:text-3xl lg:text-4xl">
+                        Let&apos;s Work Together
+                    </h2>
+                    <p className="mx-auto max-w-xl text-sm text-gray-400 sm:text-base">
+                        Have a project in mind or want to collaborate? Reach out — I&apos;d love to hear from you.
+                    </p>
+                </div>
+
+                <div className="grid gap-6 lg:grid-cols-5 lg:gap-8">
+                    <div
+                        className={`space-y-3 lg:col-span-3 ${fadeUp} ${visible}`}
+                        style={{ transitionDelay: '120ms' }}
+                    >
+                        {contactMethods.map(({ icon: Icon, label, value, type, href, copyText }) => (
+                            <div
+                                key={type}
+                                className="group relative flex items-center gap-4 rounded-2xl border border-gray-800/60 bg-black/35 p-4 backdrop-blur-xl transition-all duration-300 hover:border-violet-500/30 hover:bg-black/50 sm:p-5"
+                            >
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-violet-500/25 bg-violet-500/10">
+                                    <Icon className="h-5 w-5 text-violet-300" />
+                                </div>
+
+                                <div className="min-w-0 flex-1">
+                                    <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                                        {label}
+                                    </p>
+                                    <p className="truncate text-sm font-medium text-gray-200 transition-colors group-hover:text-white sm:text-base">
+                                        {value}
+                                    </p>
+                                </div>
+
+                                <div className="flex shrink-0 gap-2">
+                                    <a
+                                        href={href}
+                                        target={type === 'location' ? '_blank' : undefined}
+                                        rel={type === 'location' ? 'noopener noreferrer' : undefined}
+                                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-700/60 bg-gray-900/50 text-gray-400 transition-all duration-300 hover:border-violet-500/40 hover:text-violet-200"
+                                        aria-label={`Open ${label}`}
+                                    >
+                                        <ArrowUpRight className="h-4 w-4" />
+                                    </a>
+                                    <button
+                                        type="button"
+                                        onClick={() => copyToClipboard(value, type)}
+                                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-700/60 bg-gray-900/50 text-gray-400 transition-all duration-300 hover:border-violet-500/40 hover:text-violet-200"
+                                        aria-label={`Copy ${label}`}
+                                    >
+                                        {copiedItem === type ? (
+                                            <Check className="h-4 w-4 text-emerald-400" />
+                                        ) : (
+                                            <Copy className="h-4 w-4" />
+                                        )}
+                                    </button>
+                                </div>
+
+                                {copiedItem === type && (
+                                    <span className="absolute -top-2.5 right-4 rounded-md border border-emerald-500/30 bg-gray-950/95 px-2 py-0.5 text-[10px] font-medium text-emerald-300 shadow-lg">
+                                        {copyText}
+                                    </span>
+                                )}
+
+                                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-violet-500 to-purple-500 transition-all duration-500 group-hover:w-full" />
+                            </div>
+                        ))}
                     </div>
 
-                    <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-                        {/* Contact Information */}
-                        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
-                            <h3 className="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">Contact Information</h3>
-
-                            <div className="grid sm:grid-cols-1 gap-4 sm:gap-6">
-                                {contactInfo.map(({ icon: Icon, text, type, action, copyText }, index) => (
-                                    <div key={index} className="group relative">
-                                        <div className="flex items-center justify-between p-4 sm:p-6 bg-black/40 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl hover:bg-black/60 hover:border-violet-500/50 transition-all duration-300">
-                                            <div className="flex items-center space-x-4 sm:space-x-6 flex-1 min-w-0">
-                                                <div className="p-3 sm:p-4 bg-gradient-to-br from-violet-600/20 to-purple-600/20 rounded-xl border border-violet-500/30 flex-shrink-0">
-                                                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-violet-400" />
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <span className="text-gray-200 text-sm sm:text-base lg:text-lg break-all group-hover:text-white transition-colors duration-300">
-                                                        {text}
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex space-x-2 ml-4 flex-shrink-0">
-                                                <button
-                                                    onClick={action}
-                                                    className="p-2 sm:p-3 bg-violet-600/20 hover:bg-violet-600/40 rounded-lg border border-violet-500/30 transition-all duration-300 hover:scale-105"
-                                                    title="Open"
-                                                >
-                                                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-violet-400" />
-                                                </button>
-                                                <button
-                                                    onClick={() => copyToClipboard(text, type)}
-                                                    className="p-2 sm:p-3 bg-purple-600/20 hover:bg-purple-600/40 rounded-lg border border-purple-500/30 transition-all duration-300 hover:scale-105"
-                                                    title="Copy"
-                                                >
-                                                    {copiedItem === type ? (
-                                                        <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
-                                                    ) : (
-                                                        <Copy className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        {/* Copy notification */}
-                                        {copiedItem === type && (
-                                            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-green-600 text-white px-3 py-1 rounded-lg text-xs sm:text-sm font-medium animate-pulse">
-                                                {copyText}
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Quick Actions */}
-                        <div className="space-y-4 sm:space-y-6">
-                            <h3 className="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">Quick Actions</h3>
-
-                            {/* Quick Actions Grid - Updated to vertical layout */}
-                            <div className="max-w-md mx-auto space-y-4 sm:space-y-6">
-                                {quickActions.map((action, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={action.action}
-                                        className={`group w-full relative p-6 rounded-2xl border backdrop-blur-xl transition-all duration-300
-                    bg-gray-900/20 hover:bg-gray-900/30
-                    ${action.border}
-                `}
-                                    >
-                                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${action.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
-                                        
-                                        <div className="relative flex items-center gap-6">
-                                            <div className={`p-3 rounded-xl bg-gray-900/50 border border-gray-800/50 ${action.iconColor} transition-colors duration-300 flex-shrink-0`}>
-                                                {React.createElement(action.icon, { size: 24, strokeWidth: 1.5 })}
-                                            </div>
-                                            
-                                            <div className="text-left">
-                                                <h3 className="text-lg font-semibold text-gray-200 group-hover:text-white">
-                                                    {action.title}
-                                                </h3>
-                                                <p className="text-sm text-gray-400 group-hover:text-gray-300">
-                                                    {action.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
-
-                            {/* Availability Status */}
-                            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-black/40 backdrop-blur-sm border border-green-500/30 rounded-xl sm:rounded-2xl">
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                                    <div>
-                                        <p className="text-green-400 font-semibold text-sm sm:text-base">Available for Projects</p>
-                                        <p className="text-gray-400 text-xs sm:text-sm">Currently accepting new opportunities</p>
-                                    </div>
+                    <div
+                        className={`space-y-4 lg:col-span-2 ${fadeUp} ${visible}`}
+                        style={{ transitionDelay: '240ms' }}
+                    >
+                        <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.06] p-4 backdrop-blur-sm sm:p-5">
+                            <div className="flex items-center gap-3">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
+                                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                                </span>
+                                <div>
+                                    <p className="text-sm font-semibold text-emerald-200">Available for projects</p>
+                                    <p className="text-xs text-gray-400">Open to freelance & full-time opportunities</p>
                                 </div>
                             </div>
                         </div>
+
+                        <div className="space-y-3">
+                            {quickLinks.map((link) => {
+                                const Icon = link.icon;
+                                const content = (
+                                    <>
+                                        <div
+                                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-800/60 bg-gray-900/50 ${link.iconClass}`}
+                                        >
+                                            <Icon className="h-5 w-5" strokeWidth={1.75} />
+                                        </div>
+                                        <div className="min-w-0 flex-1 text-left">
+                                            <p className="text-sm font-semibold text-gray-200">{link.title}</p>
+                                            <p className="text-xs text-gray-500">{link.description}</p>
+                                        </div>
+                                        <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-600 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-violet-300" />
+                                    </>
+                                );
+
+                                const className = `group flex w-full items-center gap-4 rounded-2xl border border-gray-800/60 bg-black/35 p-4 backdrop-blur-xl transition-all duration-300 ${link.accent}`;
+
+                                if ('action' in link && link.action === 'cv') {
+                                    return (
+                                        <button key={link.title} type="button" onClick={handleDownloadCV} className={className}>
+                                            {content}
+                                        </button>
+                                    );
+                                }
+
+                                return (
+                                    <a
+                                        key={link.title}
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={className}
+                                    >
+                                        {content}
+                                    </a>
+                                );
+                            })}
+                        </div>
+
+                        <p className="px-1 text-center text-xs text-gray-600 lg:text-left">
+                            Typical response time: within 24 hours
+                        </p>
                     </div>
                 </div>
             </div>

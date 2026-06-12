@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
 import { Project, Certificate, TechStack, Publication, PortfolioItemProps } from '../types';
 
 const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
@@ -45,28 +45,23 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
         e.currentTarget.src = '/images/certificate-placeholder.png';
     };
 
-    const renderTechnologies = () => {
-        if (isProject(item)) {
-            return (
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 max-h-24 overflow-hidden">
-                    {item.technologies.slice(0, 6).map((tech: string, techIndex: number) => (
-                        <span
-                            key={techIndex}
-                            className="px-2 py-1 sm:px-2.5 sm:py-1 bg-gray-800/50 text-gray-300 rounded-full text-xs sm:text-sm border border-gray-700/50 hover:bg-violet-600/20 hover:text-violet-300 hover:border-violet-500/50 transition-all duration-300 cursor-default backdrop-blur-sm"
-                        >
-                            {tech}
-                        </span>
-                    ))}
-                    {item.technologies.length > 6 && (
-                        <span className="px-2 py-1 sm:px-2.5 sm:py-1 bg-gray-800/30 text-gray-400 rounded-full text-xs sm:text-sm border border-gray-700/30 cursor-default backdrop-blur-sm">
-                            +{item.technologies.length - 6}
-                        </span>
-                    )}
-                </div>
-            );
-        }
-        return null;
-    };
+    const renderProjectTechnologies = (project: Project) => (
+        <div className="flex flex-wrap gap-1.5">
+            {project.technologies.slice(0, 5).map((tech) => (
+                <span
+                    key={tech}
+                    className="rounded-md border border-gray-700/70 bg-gray-900/80 px-2 py-0.5 text-[11px] text-gray-200 transition-colors duration-300 group-hover:border-violet-500/40 group-hover:text-violet-100 sm:text-xs"
+                >
+                    {tech}
+                </span>
+            ))}
+            {project.technologies.length > 5 && (
+                <span className="rounded-md border border-gray-700/50 bg-gray-900/60 px-2 py-0.5 text-[11px] text-gray-300 sm:text-xs">
+                    +{project.technologies.length - 5}
+                </span>
+            )}
+        </div>
+    );
 
     return (
         <div
@@ -94,66 +89,91 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                 </div>
             ) : isProject(item) ? (
                 (() => {
-                    const projectSlug = slugify(item.title);
+                    const project = item as Project;
+                    const projectSlug = slugify(project.title);
+
                     return (
                         <Link
                             href={`/projects/${projectSlug}`}
-                            className="relative block h-full bg-black/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 group-hover:transform group-hover:-translate-y-2 group-hover:border-violet-500/50 group-hover:shadow-2xl group-hover:shadow-violet-500/20 cursor-pointer flex flex-col"
+                            className="project-card group/project relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-800/60 bg-black/35 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-violet-500/35 hover:shadow-xl hover:shadow-violet-500/10"
                         >
-                            {(item as Project).imageUrl && (
-                                <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden flex-shrink-0">
+                            {project.imageUrl && (
+                                <div className="relative aspect-[16/10] shrink-0 overflow-hidden">
                                     <img
-                                        src={(item as Project).imageUrl}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                                        src={project.imageUrl}
+                                        alt={project.title}
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover/project:scale-[1.04]"
                                         onError={handleProjectImageError}
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent opacity-80" />
 
-                                    {/* PERBAIKAN: Mengganti <a> menjadi <button> */}
-                                    <button
-                                        onClick={(e) => handleExternalClick(e, item.link)}
-                                        className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 z-20"
-                                    >
-                                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </button>
+                                    <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                                        {project.category && (
+                                            <span className="rounded-md border border-violet-400/50 bg-gray-950/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-violet-100 shadow-lg shadow-black/30 backdrop-blur-sm sm:text-[11px]">
+                                                {project.category}
+                                            </span>
+                                        )}
+                                        {project.timeline && (
+                                            <span className="rounded-md border border-white/20 bg-gray-950/90 px-2.5 py-1 text-[10px] font-medium text-gray-100 shadow-lg shadow-black/30 backdrop-blur-sm sm:text-[11px]">
+                                                {project.timeline}
+                                            </span>
+                                        )}
+                                    </div>
 
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                                        <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 tracking-tight drop-shadow-lg">
-                                            {item.title}
-                                        </h3>
+                                    <div className="absolute right-3 top-3 flex gap-2 opacity-0 transition-all duration-300 group-hover/project:opacity-100">
+                                        <button
+                                            type="button"
+                                            onClick={(e) => handleExternalClick(e, project.link)}
+                                            aria-label="View GitHub repository"
+                                            className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-700/60 bg-black/50 text-gray-300 backdrop-blur-md transition-colors hover:border-violet-500/40 hover:text-white"
+                                        >
+                                            <Github className="h-3.5 w-3.5" />
+                                        </button>
+                                        {project.liveDemo && (
+                                            <button
+                                                type="button"
+                                                onClick={(e) => handleExternalClick(e, project.liveDemo!)}
+                                                aria-label="Open live demo"
+                                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-700/60 bg-black/50 text-gray-300 backdrop-blur-md transition-colors hover:border-violet-500/40 hover:text-white"
+                                            >
+                                                <ExternalLink className="h-3.5 w-3.5" />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             )}
 
-                            <div className="relative p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
-                                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/0 via-purple-600/0 to-fuchsia-600/0 group-hover:from-violet-600/10 group-hover:via-purple-600/5 group-hover:to-fuchsia-600/10 transition-all duration-700" />
-                                <div className="relative z-10 flex-1 flex flex-col">
-                                    {!(item as Project).imageUrl && (
-                                        <div className="flex justify-between items-start mb-4 sm:mb-6">
-                                            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white group-hover:text-violet-300 transition-all duration-300 tracking-tight pr-2">
-                                                {item.title}
-                                            </h3>
-                                            {/* PERBAIKAN: Mengganti <a> menjadi <button> */}
-                                            <button
-                                                onClick={(e) => handleExternalClick(e, item.link)}
-                                                className="p-1.5 sm:p-2 bg-violet-600/20 rounded-full opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0 z-20"
-                                            >
-                                                <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-violet-400 hover:text-violet-300" />
-                                            </button>
-                                        </div>
-                                    )}
-                                    <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-300 line-clamp-3 flex-shrink-0">
-                                        {item.description}
-                                    </p>
-                                    <div className="mt-auto">
-                                        {renderTechnologies()}
+                            <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+                                <div className="mb-3 flex items-start justify-between gap-3">
+                                    <div className="min-w-0 flex-1">
+                                        <h3 className="text-base font-bold leading-snug text-white transition-colors duration-300 group-hover/project:text-violet-100 sm:text-lg">
+                                            {project.title}
+                                        </h3>
+                                        {project.role && (
+                                            <p className="mt-1 text-xs font-medium text-violet-300 sm:text-sm">
+                                                {project.role}
+                                            </p>
+                                        )}
                                     </div>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gray-800/60 bg-gray-900/40 text-gray-500 transition-all duration-300 group-hover/project:border-violet-500/30 group-hover/project:bg-violet-500/10 group-hover/project:text-violet-300">
+                                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/project:translate-x-0.5 group-hover/project:-translate-y-0.5" />
+                                    </span>
+                                </div>
+
+                                <p className="mb-4 line-clamp-3 flex-1 text-sm leading-relaxed text-gray-400 transition-colors duration-300 group-hover/project:text-gray-300">
+                                    {project.description}
+                                </p>
+
+                                <div className="mt-auto space-y-4 border-t border-gray-800/50 pt-4">
+                                    {renderProjectTechnologies(project)}
+                                    <span className="inline-flex items-center gap-1 text-xs font-medium text-violet-300 transition-colors duration-300 group-hover/project:text-violet-200">
+                                        View case study
+                                        <ArrowUpRight className="h-3 w-3" />
+                                    </span>
                                 </div>
                             </div>
-                            <div className="absolute -inset-[1px] rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-violet-600/50 via-purple-600/50 to-fuchsia-600/50 blur-xl transform scale-105" />
-                            </div>
+
+                            <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 transition-all duration-500 group-hover/project:w-full" />
                         </Link>
                     );
                 })()
@@ -164,7 +184,7 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({ item, type, index }) => {
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 relative z-10">
                         <div className="flex-1">
                             <div className="flex items-center gap-2 mb-3">
-                                <span className="px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-[10px] uppercase tracking-wider font-semibold">
+                                <span className="rounded-full border border-violet-400/35 bg-violet-950/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-violet-100">
                                     {item.year}
                                 </span>
                                 <span className="text-gray-500 text-xs font-medium">

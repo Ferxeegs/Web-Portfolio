@@ -325,18 +325,18 @@ export const experiences: Experience[] = [
         title: 'Full Stack Developer',
         organization: 'Jaya Techno',
         subtitle: 'CV. Arshaka Jaya Kreasindo',
-        location: 'Cilacap, Indonesia',
+        location: 'Remote',
         period: 'Feb 2026 — Present',
         current: true,
         accent: 'cyan',
         description:
-            'Building client-facing digital products and managing production infrastructure for travel, SaaS, and business platforms under the Arshaka Jaya Kreasindo group.',
+            'Working remotely to build client-facing digital products and manage production infrastructure for travel, SaaS, and business platforms under the Arshaka Jaya Kreasindo group.',
         highlights: [
             'Continued and expanded Arshakatour with full-stack features and admin management',
             'Shipped UltraPDF, E-Laundry Pondok, and other production-ready web applications',
             'Manage and maintain Jaya Techno servers — deployment, Nginx, Docker, and uptime monitoring',
         ],
-        technologies: ['Next.js', 'FastAPI', 'React', 'Astro Js', 'Tailwind CSS', 'Docker', 'PostgreSQL', 'MySQL', 'Nginx'],
+        technologies: ['Next.js', 'FastAPI', 'React', 'Astro Js', 'Tailwind CSS', 'Docker', 'PostgreSQL', 'MySQL', 'Nginx', 'Ubuntu Server'],
     },
     {
         id: 'exp-dokter-ikan',

@@ -21,7 +21,7 @@ const accentStyles: Record<ExperienceAccent, {
     violet: {
         border: 'border-violet-500/25',
         glow: 'bg-violet-600/10',
-        badge: 'border-violet-500/25 bg-violet-500/10 text-violet-300',
+        badge: 'border-violet-400/35 bg-violet-950/60 text-violet-100',
         dot: 'bg-violet-400 shadow-violet-400/50',
         icon: 'from-violet-500 to-purple-600 shadow-violet-500/25',
         hover: 'group-hover:border-violet-500/40 group-hover:shadow-violet-500/10',
@@ -30,7 +30,7 @@ const accentStyles: Record<ExperienceAccent, {
     cyan: {
         border: 'border-cyan-500/25',
         glow: 'bg-cyan-600/10',
-        badge: 'border-cyan-500/25 bg-cyan-500/10 text-cyan-300',
+        badge: 'border-cyan-400/35 bg-cyan-950/60 text-cyan-100',
         dot: 'bg-cyan-400 shadow-cyan-400/50',
         icon: 'from-cyan-500 to-blue-600 shadow-cyan-500/25',
         hover: 'group-hover:border-cyan-500/40 group-hover:shadow-cyan-500/10',
@@ -39,7 +39,7 @@ const accentStyles: Record<ExperienceAccent, {
     fuchsia: {
         border: 'border-fuchsia-500/25',
         glow: 'bg-fuchsia-600/10',
-        badge: 'border-fuchsia-500/25 bg-fuchsia-500/10 text-fuchsia-300',
+        badge: 'border-fuchsia-400/35 bg-fuchsia-950/60 text-fuchsia-100',
         dot: 'bg-fuchsia-400 shadow-fuchsia-400/50',
         icon: 'from-fuchsia-500 to-violet-600 shadow-fuchsia-500/25',
         hover: 'group-hover:border-fuchsia-500/40 group-hover:shadow-fuchsia-500/10',
@@ -229,8 +229,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
                         Experience
                     </h2>
                     <p className="mx-auto max-w-2xl text-sm text-gray-400 sm:text-base">
-                        Currently contributing across academic and industry environments — building
-                        production systems at Universitas Diponegoro and Jaya Techno.
+                        Currently building production systems for UNDIP&apos;s business and commercial
+                        operations, alongside remote client-facing products at Jaya Techno.
                     </p>
                 </div>
 
