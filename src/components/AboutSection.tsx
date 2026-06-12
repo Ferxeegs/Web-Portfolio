@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Download, ArrowRight, Calendar, Award, MapPin, Server } from 'lucide-react';
+import { FileText, ArrowRight, Calendar, Award, MapPin, Server } from 'lucide-react';
+
+const CV_PATH = '/CV_Fadlil_Ferdiansyah.pdf';
 
 interface AboutSectionProps {
     visibleElements: Set<string>;
@@ -35,13 +37,6 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
         if (aboutSection) observer.observe(aboutSection);
         return () => observer.disconnect();
     }, []);
-
-    const handleDownloadCV = () => {
-        const link = document.createElement('a');
-        link.href = '/CV_Fadlil_Ferdiansyah.pdf';
-        link.download = 'CV_Fadlil_Ferdiansyah.pdf';
-        link.click();
-    };
 
     const handleViewPortfolio = () => {
         document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
@@ -117,13 +112,15 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
                         </div>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-                            <button
-                                onClick={handleDownloadCV}
+                            <a
+                                href={CV_PATH}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-600/20 transition-all duration-300 hover:from-violet-500 hover:to-purple-500 sm:text-base"
                             >
-                                <Download className="h-4 w-4" />
-                                Download CV
-                            </button>
+                                <FileText className="h-4 w-4" />
+                                View CV
+                            </a>
                             <button
                                 onClick={handleViewPortfolio}
                                 className="group flex items-center justify-center gap-2 rounded-xl border border-gray-700/60 bg-black/20 px-6 py-3 text-sm font-semibold text-gray-300 backdrop-blur-sm transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/[0.06] hover:text-white sm:text-base"

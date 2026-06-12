@@ -8,7 +8,7 @@ import {
     Copy,
     Check,
     MessageCircle,
-    Download,
+    FileText,
     Linkedin,
     ArrowUpRight,
 } from 'lucide-react';
@@ -62,10 +62,10 @@ const quickLinks = [
         iconClass: 'text-blue-400',
     },
     {
-        title: 'Download CV',
-        description: 'View my resume',
-        icon: Download,
-        action: 'cv' as const,
+        title: 'View CV',
+        description: 'Open my resume',
+        icon: FileText,
+        href: '/CV_Fadlil_Ferdiansyah.pdf',
         accent: 'hover:border-violet-500/35 hover:bg-violet-500/[0.06]',
         iconClass: 'text-violet-400',
     },
@@ -98,13 +98,6 @@ const ContactSection: React.FC<ContactSectionProps> = () => {
         } catch (err) {
             console.error('Failed to copy:', err);
         }
-    };
-
-    const handleDownloadCV = () => {
-        const link = document.createElement('a');
-        link.href = '/CV_Fadlil_Ferdiansyah.pdf';
-        link.download = 'CV_Fadlil_Ferdiansyah.pdf';
-        link.click();
     };
 
     const fadeUp = 'transition-all duration-700 ease-out';
@@ -227,14 +220,6 @@ const ContactSection: React.FC<ContactSectionProps> = () => {
                                 );
 
                                 const className = `group flex w-full items-center gap-4 rounded-2xl border border-gray-800/60 bg-black/35 p-4 backdrop-blur-xl transition-all duration-300 ${link.accent}`;
-
-                                if ('action' in link && link.action === 'cv') {
-                                    return (
-                                        <button key={link.title} type="button" onClick={handleDownloadCV} className={className}>
-                                            {content}
-                                        </button>
-                                    );
-                                }
 
                                 return (
                                     <a
