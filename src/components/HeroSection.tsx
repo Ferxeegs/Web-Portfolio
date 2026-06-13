@@ -49,13 +49,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                             className={`inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/[0.08] px-3.5 py-1.5 backdrop-blur-sm ${fadeUp} ${visible}`}
                             style={{ transitionDelay: '0ms' }}
                         >
-                            <span className="relative flex h-2 w-2">
+                            {/* <span className="relative flex h-2 w-2">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                             </span>
                             <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-violet-100 sm:text-xs">
                                 Open to opportunities
-                            </span>
+                            </span> */}
                         </div>
 
                         <div className="space-y-3" style={{ transitionDelay: '80ms' }}>
