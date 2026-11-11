@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             title: `${project.title} - Portfolio Fadlil Ferdiansyah`,
             description: project.description,
             url: `https://ferxcode.my.id/projects/${slug}`,
-            siteName: 'Ferxcode Portfolio',
+            siteName: 'Ferxcode',
             images: [
                 {
                     url: project.imageUrl ?? '/og-image.png',

@@ -201,6 +201,32 @@ export const projects: Project[] = [
         category: "Web Application"
     },
     // {
+    //     title: "Popupi",
+    //     description:
+    //         "A tour and travel platform for booking trips across Indonesia. It features diverse destination packages, flexible payment options, and a complete administrative management system for travel agencies.",
+    //     longDescription: [
+    //         "Arshakatour is a comprehensive tour and travel booking platform designed to facilitate seamless trip reservations across Indonesia. The platform offers a wide range of destination packages, catering to various traveler preferences, from cultural explorations to adventure tourism. Users can easily browse through curated tour options, view detailed itineraries, and make bookings with flexible payment methods, including online payments and installment plans.",
+    //         "For travel agencies, Arshakatour provides a robust administrative management system that streamlines operations such as package management, booking tracking, and customer relationship management. The platform's user-friendly interface ensures an enjoyable experience for both travelers and agency staff, enhancing overall efficiency and customer satisfaction in the travel booking process."
+    //     ],
+    //     technologies: ["Laravel", "MySQL", "Bootstrap", "JavaScript"],
+    //     link: "https://github.com/Ferxeegs/Arshakatour",
+    //     imageUrl: "/projects/Arshakatour1.png",
+    //     images: [
+    //         "/projects/Arshakatour1.png",
+    //         "/projects/Arshakatour2.png",
+    //         "/projects/Arshakatour3.png"
+    //     ],
+    //     role: "Backend Developer",
+    //     timeline: "Dec 2023 - Feb 2024",
+    //     features: [
+    //         "Tour Package Management",
+    //         "Secure Booking & Payment Workflow",
+    //         "Centralized Admin Management Panel",
+    //         "Responsive Client-facing Website"
+    //     ],
+    //     category: "Web Application"
+    // },
+    // {
     //     title: "NutriSense",
     //     description:
     //         "Mobile dietary application that utilizes image recognition to scan food. It detects nutritional content and evaluates food healthiness, helping users make smarter dietary decisions in real-time.",
